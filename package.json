@@ -8,7 +8,8 @@
     "test": "vue-cli-service test:unit --verbose",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "chromatic": "npx chromatic --project-token=e31e7d3e7c42"
   },
   "dependencies": {
     "@heroicons/vue": "1.0.6",
@@ -44,6 +45,7 @@
     "@vue/vue3-jest": "^27.0.0-alpha.1",
     "autoprefixer": "^9.8.6",
     "babel-jest": "^27.0.6",
+    "chromatic": "6.5.4",
     "css-loader": "6.7.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

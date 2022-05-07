@@ -5,7 +5,6 @@
     .transform.scale-75.text-gray-500
       ArrowLeftIcon.search-input-icons(v-if="isSearchActive" data-test="search-arrow")
       SearchIcon.search-input-icons(v-else data-test="search-magnifying-glass")
-
     input.search-input-component(
       type="text"
       v-model="searchInput"
@@ -17,7 +16,7 @@
       @keydown.enter.prevent="onKeydown"
     )
     button.search-btn.apprearance-none(data-test="search-close" @click="clearSearch")
-      XIcon.search-close(v-if="searchInput")
+      CloseIcon.search-close(v-if="searchInput")
 
   .search-results(data-test="search-results" :class="{ loading: searchInput && !suggestedResults.length }")
     ul.space-y-2.py-2(v-if="searchInput" data-test="search-results-content")
@@ -26,9 +25,9 @@
           .flex.justify-between.items-center
             .flex.items-center
               .mr-2.my-1.p-2.border.rounded-full.border-gray-200
-                BookOpenIcon.text-gray-500
+                BookIcon.text-gray-500
               p.text-sm Search "{{ searchInput }}" in items
-            ChevronRightIcon.transform.scale-75.text-gray-500
+            ChevronIconRight.transform.scale-75.text-gray-500
       slot
 </template>
 
@@ -36,13 +35,13 @@
 import debounce from 'lodash/debounce'
 import { defineComponent, PropType, ref, Ref } from 'vue'
 
-import { BookOpenIcon, SearchIcon, XIcon, ArrowLeftIcon, ChevronRightIcon } from '@heroicons/vue/outline'
+import { BookIcon, SearchIcon, CloseIcon, ArrowLeftIcon, ChevronIconRight } from '../shared'
 import SearchAction from './SearchAction.vue'
 
 export default defineComponent({
   name: 'Search',
 
-  components: { SearchAction, BookOpenIcon, ChevronRightIcon, SearchIcon, XIcon, ArrowLeftIcon },
+  components: { SearchAction, BookIcon, ChevronIconRight, SearchIcon, CloseIcon, ArrowLeftIcon },
 
   props: {
     suggestedResults: {
