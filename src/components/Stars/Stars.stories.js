@@ -20,5 +20,7 @@ const Template = args => ({
 
 export const Primary = Template.bind({})
 Primary.args = {
-  color: 'gold'
+  color: 'gold',
+  ratings: 5,
+  defaultRating: 0
 }

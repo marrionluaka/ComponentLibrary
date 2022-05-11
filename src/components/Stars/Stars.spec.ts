@@ -8,7 +8,8 @@ describe('Stars spec', () => {
     wrapper = mount(Stars, {
       props: {
         color: 'golden',
-        ratings: 5
+        ratings: 5,
+        defaultRating: 0
       }
     })
   })

@@ -12,47 +12,35 @@ ul.flex(data-test="stars")
 
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, ref, Ref } from 'vue'
+<script setup lang="ts">
+import { ref, Ref } from 'vue'
 import StarIcon from './StarIcon.vue'
 
-export default defineComponent({
-  name: 'Stars',
+type StarProps = {
+  color: string
+  ratings: number
+  defaultRating: number
+}
 
-  components: { StarIcon },
-
-  props: {
-    color: {
-      type: String as PropType<string>,
-      default: '#fbbf24'
-    },
-    ratings: {
-      type: Number as PropType<number>,
-      default: 5
-    },
-    defaultRating: {
-      type: Number as PropType<number>,
-      default: 0
-    }
-  },
-
-  emits: ['click'],
-
-  setup(props, { emit }) {
-    const activeStar: Ref<number> = ref(0)
-    const stars: Ref<number[]> = ref([...Array(props.ratings)].map((_, i) => i + 1))
-
-    let _currentRating: number = props.defaultRating
-
-    const onClick = (star: number): void => {
-      emit('click', star)
-      _currentRating = star
-      activeStar.value = star
-    }
-
-    const onMouseleave = (): number => (activeStar.value = _currentRating || 0)
-
-    return { stars, activeStar, onClick, onMouseleave }
-  }
+const props = withDefaults(defineProps<StarProps>(), {
+  color: '#fbbf24',
+  ratings: 5,
+  defaultRating: 0
 })
+const emit = defineEmits(['click'])
+
+const activeStar: Ref<number> = ref(0)
+const stars: Ref<number[]> = ref([...Array(props.ratings)].map((_, i) => i + 1))
+
+let _currentRating: number = props.defaultRating
+
+function onClick(star: number): void {
+  emit('click', star)
+  _currentRating = star
+  activeStar.value = star
+}
+
+function onMouseleave(): number {
+  return (activeStar.value = _currentRating || 0)
+}
 </script>
