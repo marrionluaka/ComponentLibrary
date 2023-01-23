@@ -1,14 +1,6 @@
 import { vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import flushPromises from 'flush-promises'
 import Search from './index.vue'
-
-// vi.mock('../../lib/debounce.ts', () => ({
-//   default: (fn: any) => (...args: any) => {
-//     console.log('sup')
-//     fn.apply(this, args)
-//   }
-// }))
 
 describe('Search specs', () => {
   let wrapper: any
@@ -49,11 +41,11 @@ describe('Search specs', () => {
     expect(wrapper.find('[data-test="search-results-content"]').exists()).toBe(false)
   })
 
-  it.only('emits a "keydown" event for each key stroke', async () => {
+  it('emits a "keydown" event for each key stroke', async () => {
     await wrapper.find('[data-test="search"]').setValue('cat')
     await wrapper.find('[data-test="search"]').trigger('keydown')
     vi.advanceTimersByTime(500)
-    await flushPromises()
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.emitted('keydown')[0][0]).toBe('cat')
   })

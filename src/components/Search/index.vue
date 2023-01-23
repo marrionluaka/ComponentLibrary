@@ -13,7 +13,7 @@
       class="focus:ring-0"
       @focus="isSearchActive = true"
       @blur="isSearchActive = false"
-      @keydown.enter.prevent="onKeydown"
+      @keydown="onKeydown"
     )
     button.search-btn.appearance-none(data-test="search-close" @click="clearSearch")
       CloseIcon.search-close(v-if="searchInput")
@@ -67,7 +67,7 @@ export default defineComponent({
     }
 
     const onKeydown = debounce((e: any) => {
-      console.log('got here')
+      if (e.keyCode === 13) return
       emit('keydown', e.target.value)
     }, 400)
 
