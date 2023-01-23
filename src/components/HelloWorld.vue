@@ -1,60 +1,38 @@
-<template lang="pug">
-section
-  h2 Books
-  div(v-if="requestState.state === 'pending'")
-    p Loading...
-  div(v-else-if="requestState.state === 'error'")
-    p Error
-  div(v-else)
-    ul
-      li(v-for="book in books" :key="book.id")
-        a(:href="book.link" target="_blank")
-          p {{ book.title }}
-          img(:src="book.imgSrc" :alt="book.title")
+<script setup lang="ts">
+import { ref } from 'vue'
+
+defineProps<{ msg: string }>()
+
+const count = ref(0)
+</script>
+
+<template>
+  <h1>{{ msg }}</h1>
+
+  <div class="card">
+    <button type="button" @click="count++">count is {{ count }}</button>
+    <p>
+      Edit
+      <code>components/HelloWorld.vue</code> to test HMR
+    </p>
+  </div>
+
+  <p>
+    Check out
+    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
+      >create-vue</a
+    >, the official Vue + Vite starter
+  </p>
+  <p>
+    Install
+    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
+    in your IDE for a better DX
+  </p>
+  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<script setup lang="ts">
-import { onMounted, computed } from 'vue'
-import useFetch, { RequestSuccess } from '../useFetch'
-
-type BookViewModel = {
-  id: string
-  title: string
-  link: string
-  imgSrc?: string
+<style scoped>
+.read-the-docs {
+  color: #888;
 }
-
-type Book = {
-  id: string
-  volumeInfo: {
-    title: string
-    infoLink: string
-    imageLinks?: {
-      smallThumbnail: string
-      thumbnail: string
-    }
-  }
-}
-
-type BookInfo = {
-  items: Book[]
-}
-
-const [requestState, setRequestState] = useFetch<BookInfo>()
-
-onMounted(async () => {
-  await setRequestState('https://www.googleapis.com/books/v1/volumes?q=haskell')
-})
-
-const books = computed<BookViewModel[]>(() => {
-  return (requestState.value as RequestSuccess<BookInfo>).data?.items.map(
-    (b: Book) =>
-      ({
-        id: b.id,
-        title: b.volumeInfo.title,
-        link: b.volumeInfo.infoLink,
-        imgSrc: b.volumeInfo.imageLinks?.thumbnail
-      } as BookViewModel)
-  )
-})
-</script>
+</style>

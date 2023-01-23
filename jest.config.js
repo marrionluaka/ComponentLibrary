@@ -1,5 +1,5 @@
 module.exports = {
-  preset: '@vue/cli-plugin-unit-jest/presets/typescript',
+  // preset: '@vue/cli-plugin-unit-jest/presets/typescript',
   modulePaths: ['<rootDir>/src', '<rootDir>/node_modules'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
@@ -14,7 +14,7 @@ module.exports = {
     'ts-jest': {
       compiler: 'typescript'
     },
-    '@vue/vue-jest': {
+    '@vue/vue3-jest': {
       pug: {
         filename: 'pug',
         doctype: 'html',

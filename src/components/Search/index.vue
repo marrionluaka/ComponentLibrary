@@ -3,8 +3,8 @@
   .search-overlay(v-if="isSearchActive" data-test="search-overlay")
   .search-input.flex.items-center(class="focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm")
     .transform.scale-75.text-gray-500
-      ArrowLeftIcon.search-input-icons(v-if="isSearchActive" data-test="search-arrow")
-      SearchIcon.search-input-icons(v-else data-test="search-magnifying-glass")
+        ArrowLeftIcon.search-input-icons(v-if="isSearchActive" data-test="search-arrow")
+        SearchIcon.search-input-icons(v-else data-test="search-magnifying-glass")
     input.search-input-component(
       type="text"
       v-model="searchInput"
@@ -15,7 +15,7 @@
       @blur="isSearchActive = false"
       @keydown.enter.prevent="onKeydown"
     )
-    button.search-btn.apprearance-none(data-test="search-close" @click="clearSearch")
+    button.search-btn.appearance-none(data-test="search-close" @click="clearSearch")
       CloseIcon.search-close(v-if="searchInput")
 
   .search-results(data-test="search-results" :class="{ loading: searchInput && !suggestedResults.length }")
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import debounce from 'lodash/debounce'
+import debounce from '../../lib/debounce'
 import { defineComponent, PropType, ref, Ref } from 'vue'
 
 import { BookIcon, SearchIcon, CloseIcon, ArrowLeftIcon, ChevronIconRight } from '../shared'
@@ -66,7 +66,10 @@ export default defineComponent({
       clearSearch()
     }
 
-    const onKeydown = debounce((e: any) => emit('keydown', e.target.value), 400)
+    const onKeydown = debounce((e: any) => {
+      console.log('got here')
+      emit('keydown', e.target.value)
+    }, 400)
 
     return { searchInput, isSearchActive, onSearch, onKeydown, clearSearch }
   }

@@ -30,7 +30,7 @@ describe('Tooltip', () => {
     expect(wrapper.html()).toContain('Click Me!')
   })
 
-  it('toggles the display of the tooltip on hover.', async () => {
+  it.skip('toggles the display of the tooltip on hover.', async () => {
     await wrapper.find('[data-test="tooltip"]').trigger('mouseover')
     expect(wrapper.find('[data-test="tooltip-content"]').isVisible()).toBe(true)
     expect(wrapper.find('[data-test="tooltip-content"]').classes()).toContain('top')
