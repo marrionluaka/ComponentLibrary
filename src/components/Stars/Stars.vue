@@ -8,8 +8,7 @@ ul.flex(data-test="stars")
     @click="onClick(star)"
     @mouseover="activeStar = star"
     @mouseleave="onMouseleave"
-  ) {{ star }}
-
+  )
 </template>
 
 <script setup lang="ts">
@@ -29,7 +28,7 @@ const props = withDefaults(defineProps<StarProps>(), {
 })
 const emit = defineEmits(['click'])
 
-const activeStar: Ref<number> = ref(0)
+const activeStar: Ref<number> = ref(props.defaultRating)
 const stars: Ref<number[]> = ref([...Array(props.ratings)].map((_, i) => i + 1))
 
 let _currentRating: number = props.defaultRating

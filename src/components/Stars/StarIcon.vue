@@ -13,17 +13,13 @@ svg.w-6.h-6(
   )
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
+<script setup lang="ts">
+import { PropType } from 'vue'
 
-export default defineComponent({
-  name: 'StarIcon',
-
-  props: {
-    fill: {
-      type: String as PropType<string>,
-      default: 'transparent'
-    }
+defineProps({
+  fill: {
+    type: String as PropType<string>,
+    default: 'transparent'
   }
 })
 </script>

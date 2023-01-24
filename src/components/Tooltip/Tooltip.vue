@@ -4,30 +4,23 @@
   slot
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, ref, Ref } from 'vue'
+<script setup lang="ts">
+import { PropType, ref, Ref } from 'vue'
 
 type Position = 'top' | 'right' | 'bottom' | 'left'
 
-export default defineComponent({
-  name: 'Tooltip',
-
-  props: {
-    content: {
-      type: String,
-      required: true
-    },
-    position: {
-      type: String as PropType<Position>,
-      default: 'bottom'
-    }
+defineProps({
+  content: {
+    type: String,
+    required: true
   },
-
-  setup() {
-    const isShowing: Ref<boolean> = ref(false)
-    return { isShowing }
+  position: {
+    type: String as PropType<Position>,
+    default: 'bottom'
   }
 })
+
+const isShowing: Ref<boolean> = ref(false)
 </script>
 
 <style lang="stylus" scoped>
