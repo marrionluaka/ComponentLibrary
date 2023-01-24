@@ -8,38 +8,33 @@
       :value="value"
       :checked="isChecked"
       class="focus:ring-indigo-500"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @change="$emit('update:modelValue', $event.target.value)"
     )
     slot
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'Checkbox',
-
-  props: {
-    id: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    value: {
-      type: String,
-      required: true
-    },
-    isChecked: {
-      type: Boolean,
-      default: false
-    }
+<script setup lang="ts">
+defineProps({
+  id: {
+    type: String,
+    required: true
   },
-
-  emits: ['update:modelValue']
+  name: {
+    type: String,
+    required: true
+  },
+  value: {
+    type: String,
+    required: true
+  },
+  isChecked: {
+    type: Boolean,
+    default: false
+  }
 })
+
+defineEmits(['update:modelValue'])
+
 </script>
 
 <style lang="stylus" scoped>
