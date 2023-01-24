@@ -7,22 +7,15 @@
     div(:class="{ active: isActive }") Accordion Panel
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, ref, Ref } from 'vue'
+<script setup lang="ts">
+import { ref, Ref, PropType } from "vue"
 
-export default defineComponent({
-  name: 'Accordion',
-
-  props: {
-    isOpen: {
-      type: Boolean as PropType<boolean>,
-      default: true
-    }
-  },
-
-  setup(props) {
-    const isActive: Ref<boolean> = ref(props.isOpen)
-    return { isActive }
+const props = defineProps({
+  isOpen: {
+    type: Boolean as PropType<boolean>,
+    default: true
   }
 })
+
+const isActive: Ref<boolean> = ref(props.isOpen)
 </script>

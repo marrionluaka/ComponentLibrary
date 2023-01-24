@@ -5,14 +5,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import type { PropType } from 'vue'
 
-export default defineComponent({
-  props: {
-    isOpen: {
-      type: Boolean as PropType<boolean>,
-      default: false
-    }
+defineProps({
+  isOpen: {
+    type: Boolean as PropType<boolean>,
+    default: false
   }
 })
 </script>
