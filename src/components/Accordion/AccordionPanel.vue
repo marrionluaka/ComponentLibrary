@@ -4,7 +4,7 @@
     slot
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { PropType } from 'vue'
 
 defineProps({

@@ -15,67 +15,52 @@
           | {{ option.display }}
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref, Ref, PropType } from 'vue'
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref, Ref, PropType } from 'vue'
 
 export interface IOption {
   display: string
   value: string | number
 }
 
-export default defineComponent({
-  name: 'Dropdown',
-
-  props: {
-    currentOption: {
-      type: String,
-      default: 'Select an option'
-    },
-    options: {
-      type: Array as PropType<IOption[]>,
-      required: true
-    }
+const props = defineProps({
+  currentOption: {
+    type: String,
+    default: 'Select an option'
   },
-
-  emits: ['on-selected'],
-
-  setup(props, { emit }) {
-    const dropdown: Ref<any> = ref(null)
-    const isOpen: Ref<boolean> = ref(false)
-    const activeItem: Ref<string> = ref('')
-    const selectedItem: Ref<string | number> = ref('')
-    const defaultOption: Ref<string> = ref(props.currentOption)
-
-    const closeDropdown = ({ value, display }: IOption) => {
-      isOpen.value = false
-      selectedItem.value = value
-      defaultOption.value = display
-      emit('on-selected', value)
-    }
-
-    const getOption = (option: IOption) => ({
-      ...option,
-      isActive: activeItem.value === option.value,
-      isSelected: selectedItem.value === option.value
-    })
-
-    const onClickOutside = (e: Event) => {
-      if (!(dropdown.value == e.target || dropdown.value.contains(e.target))) isOpen.value = false
-    }
-
-    onMounted(() => window.addEventListener('click', onClickOutside))
-    onUnmounted(() => window.removeEventListener('click', onClickOutside))
-
-    return {
-      isOpen,
-      dropdown,
-      activeItem,
-      defaultOption,
-      getOption,
-      closeDropdown
-    }
+  options: {
+    type: Array as PropType<IOption[]>,
+    required: true
   }
 })
+
+const emit = defineEmits(['on-selected'])
+
+const dropdown: Ref<any> = ref(null)
+const isOpen: Ref<boolean> = ref(false)
+const activeItem: Ref<string> = ref('')
+const selectedItem: Ref<string | number> = ref('')
+const defaultOption: Ref<string> = ref(props.currentOption)
+
+const closeDropdown = ({ value, display }: IOption) => {
+  isOpen.value = false
+  selectedItem.value = value
+  defaultOption.value = display
+  emit('on-selected', value)
+}
+
+const getOption = (option: IOption) => ({
+  ...option,
+  isActive: activeItem.value === option.value,
+  isSelected: selectedItem.value === option.value
+})
+
+const onClickOutside = (e: Event) => {
+  if (!(dropdown.value == e.target || dropdown.value.contains(e.target))) isOpen.value = false
+}
+
+onMounted(() => window.addEventListener('click', onClickOutside))
+onUnmounted(() => window.removeEventListener('click', onClickOutside))
 </script>
 
 <style lang="stylus" scoped>

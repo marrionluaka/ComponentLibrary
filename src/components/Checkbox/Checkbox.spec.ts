@@ -36,7 +36,7 @@ describe('Checkbox spec', () => {
   })
 
   it('emits an "input" event.', async () => {
-    await wrapper.find('input[type="checkbox"]').trigger('input')
+    await wrapper.find('input[type="checkbox"]').trigger('change')
     expect(wrapper.emitted('update:modelValue')[0][0]).toBe('CA')
   })
 
