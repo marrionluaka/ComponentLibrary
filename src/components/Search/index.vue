@@ -31,49 +31,39 @@
       slot
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import debounce from '../../lib/debounce'
 import { defineComponent, PropType, ref, Ref } from 'vue'
 
-import { BookIcon, SearchIcon, CloseIcon, ArrowLeftIcon, ChevronIconRight } from '../shared'
 import SearchAction from './SearchAction.vue'
+import { BookIcon, SearchIcon, CloseIcon, ArrowLeftIcon, ChevronIconRight } from '../shared'
 
-export default defineComponent({
-  name: 'Search',
-
-  components: { SearchAction, BookIcon, ChevronIconRight, SearchIcon, CloseIcon, ArrowLeftIcon },
-
-  props: {
-    suggestedResults: {
-      type: Array as PropType<any>,
-      default: () => []
-    }
-  },
-
-  emits: ['on-search', 'keydown'],
-
-  setup(_, { emit }) {
-    const searchInput: Ref<any> = ref(null)
-    const isSearchActive: Ref<boolean> = ref(false)
-
-    const clearSearch = () => {
-      searchInput.value = null
-      isSearchActive.value = false
-    }
-
-    const onSearch = () => {
-      emit('on-search', searchInput.value)
-      clearSearch()
-    }
-
-    const onKeydown = debounce((e: any) => {
-      if (e.keyCode === 13) return
-      emit('keydown', e.target.value)
-    }, 400)
-
-    return { searchInput, isSearchActive, onSearch, onKeydown, clearSearch }
+defineProps({
+  suggestedResults: {
+    type: Array as PropType<any>,
+    default: () => []
   }
 })
+
+const emit = defineEmits(['on-search', 'keydown'])
+
+const searchInput: Ref<any> = ref(null)
+const isSearchActive: Ref<boolean> = ref(false)
+
+function clearSearch() {
+  searchInput.value = null
+  isSearchActive.value = false
+}
+
+function onSearch() {
+  emit('on-search', searchInput.value)
+  clearSearch()
+}
+
+const onKeydown = debounce((e: any) => {
+  if (e.keyCode === 13) return
+  emit('keydown', e.target.value)
+}, 400)
 </script>
 
 <style lang="stylus" scoped>
