@@ -3,8 +3,8 @@
   .search-overlay(v-if="isSearchActive" data-test="search-overlay")
   .search-input.flex.items-center(class="focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm")
     .transform.scale-75.text-gray-500
-        ArrowLeftIcon.search-input-icons(v-if="isSearchActive" data-test="search-arrow")
-        SearchIcon.search-input-icons(v-else data-test="search-magnifying-glass")
+      ArrowLeftIcon.search-input-icons(v-if="isSearchActive" data-test="search-arrow")
+      SearchIcon.search-input-icons(v-else data-test="search-magnifying-glass")
     input.search-input-component(
       type="text"
       v-model="searchInput"
