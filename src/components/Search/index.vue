@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import debounce from '../../lib/debounce'
-import { defineComponent, PropType, ref, Ref } from 'vue'
+import { PropType, ref, Ref } from 'vue'
 
 import SearchAction from './SearchAction.vue'
 import { BookIcon, SearchIcon, CloseIcon, ArrowLeftIcon, ChevronIconRight } from '../shared'
