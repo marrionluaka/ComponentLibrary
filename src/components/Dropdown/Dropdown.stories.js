@@ -1,5 +1,5 @@
 import Dropdown from './Dropdown.vue'
-import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid'
+import { CheckIcon, SelectorIcon } from '@heroicons/vue/24/solid'
 
 export default {
   title: 'Example/Dropdown',
@@ -61,5 +61,5 @@ const TemplateScope = args => ({
 export const WithSlotScope = TemplateScope.bind({})
 WithSlotScope.args = {
   currentOption: 'Select a custom option',
-  options: [...Array(15)].map((x, i) => ({ value: i, display: `Option ${i + 1}` }))
+  options: [...Array(15)].map((x, i) => ({ value: i + 1, display: `Option ${i + 1}` }))
 }
