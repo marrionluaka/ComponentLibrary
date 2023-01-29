@@ -42,25 +42,27 @@ const activeItem: Ref<string> = ref('')
 const selectedItem: Ref<string | number> = ref('')
 const defaultOption: Ref<string> = ref(props.currentOption)
 
-const closeDropdown = ({ value, display }: IOption) => {
+onMounted(() => window.addEventListener('click', onClickOutside))
+onUnmounted(() => window.removeEventListener('click', onClickOutside))
+
+function closeDropdown({ value, display }: IOption) {
   isOpen.value = false
   selectedItem.value = value
   defaultOption.value = display
   emit('on-selected', value)
 }
 
-const getOption = (option: IOption) => ({
-  ...option,
-  isActive: activeItem.value === option.value,
-  isSelected: selectedItem.value === option.value
-})
-
-const onClickOutside = (e: Event) => {
-  if (!(dropdown.value == e.target || dropdown.value.contains(e.target))) isOpen.value = false
+function getOption(option: IOption) {
+  return {
+    ...option,
+    isActive: activeItem.value === option.value,
+    isSelected: selectedItem.value === option.value
+  }
 }
 
-onMounted(() => window.addEventListener('click', onClickOutside))
-onUnmounted(() => window.removeEventListener('click', onClickOutside))
+function onClickOutside(e: Event) {
+  if (!(dropdown.value == e.target || dropdown.value.contains(e.target))) isOpen.value = false
+}
 </script>
 
 <style lang="stylus" scoped>
