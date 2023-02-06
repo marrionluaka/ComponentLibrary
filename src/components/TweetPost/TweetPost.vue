@@ -15,33 +15,23 @@ div(class="max-w-xl" data-test="tweet")
     ) Tweet
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { defineComponent, watch, ref, Ref, PropType, ComputedRef, computed } from 'vue'
 import Smiley from './Smiley.vue'
 
-export default defineComponent({
-  name: 'Tweet',
-
-  components: { Smiley },
-
-  props: {
-    charLimit: {
-      type: Number as PropType<number>,
-      default: 280
-    }
-  },
-
-  emits: ['on-tweet'],
-
-  setup(props) {
-    const tweetBox: Ref<any> = ref(null)
-    const tweetLimit: Ref<number> = ref(props.charLimit)
-    const calcTweetLimit = (tweet: string) => props.charLimit - tweet.length
-
-    watch(tweetBox, () => (tweetLimit.value = calcTweetLimit(tweetBox.value)))
-    const isDisabled: ComputedRef<any> = computed(() => tweetLimit.value < 0 || !tweetBox.value)
-
-    return { tweetBox, tweetLimit, isDisabled }
+const props = defineProps({
+  charLimit: {
+    type: Number as PropType<number>,
+    default: 280
   }
 })
+
+defineEmits(['on-tweet'])
+
+const tweetBox: Ref<any> = ref(null)
+const tweetLimit: Ref<number> = ref(props.charLimit)
+const calcTweetLimit = (tweet: string) => props.charLimit - tweet.length
+
+watch(tweetBox, () => (tweetLimit.value = calcTweetLimit(tweetBox.value)))
+const isDisabled: ComputedRef<any> = computed(() => tweetLimit.value < 0 || !tweetBox.value)
 </script>
