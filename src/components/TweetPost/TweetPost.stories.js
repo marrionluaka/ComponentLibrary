@@ -1,17 +1,17 @@
-import Tweet from './Tweet.vue'
+import TweetPost from './TweetPost.vue'
 
 export default {
-  title: 'Example/Tweet',
-  component: Tweet,
+  title: 'Example/TweetPost',
+  component: TweetPost,
   argTypes: {
     onSubmit: {}
   }
 }
 
 const Template = args => ({
-  template: '<Tweet v-bind="args" @on-tweet="args.onSubmit" />',
+  template: '<TweetPost v-bind="args" @on-tweet="args.onSubmit" />',
 
-  components: { Tweet },
+  components: { TweetPost },
 
   setup() {
     return { args }

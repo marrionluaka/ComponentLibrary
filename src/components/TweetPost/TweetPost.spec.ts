@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
-import Tweet from './Tweet.vue'
+import TweetPost from './TweetPost.vue'
 
-describe('Tweet spec', () => {
+describe('TweetPost spec', () => {
   let wrapper: any
 
   beforeEach(() => {
-    wrapper = mount(Tweet, {
+    wrapper = mount(TweetPost, {
       props: {
         charLimit: 140
       }
@@ -24,7 +24,7 @@ describe('Tweet spec', () => {
   })
 
   it('disables the submit button when the user has typed past the character limit.', async () => {
-    wrapper = mount(Tweet, {
+    wrapper = mount(TweetPost, {
       props: {
         charLimit: 5
       }
