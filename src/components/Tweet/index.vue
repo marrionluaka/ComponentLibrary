@@ -19,10 +19,11 @@
 <script setup lang="ts">
 import { DateTime } from 'luxon'
 import type { PropType } from 'vue'
+
 import TweetAuthor from './TweetAuthor.vue'
-import TweetThumbnail from './TweetThumbnail.vue'
-import TweetContent from './TweetContent.vue'
 import TweetAction from './TweetAction.vue'
+import TweetContent from './TweetContent.vue'
+import TweetThumbnail from './TweetThumbnail.vue'
 
 type Author = {
   name: string
