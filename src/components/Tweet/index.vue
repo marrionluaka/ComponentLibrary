@@ -32,9 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import { DateTime } from 'luxon'
 import type { PropType } from 'vue'
 
+import tweetData from './data'
 import TweetAuthor from './TweetAuthor.vue'
 import TweetAction from './TweetAction.vue'
 import TweetContent from './TweetContent.vue'
@@ -62,25 +62,14 @@ type Tweet = {
   actions: Actions
 }
 
-withDefaults(defineProps<{ tweet: Tweet }>(), {
-  tweet: {
-    author: {
-      name: 'John Doe',
-      username: '@johndoe',
-      date: DateTime.now(),
-      thumbnail: {
-        src: 'https://xsgames.co/randomusers/avatar.php?g=male',
-        alt: 'User thumbnail'
-      }
-    },
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed bibendum neque sed dui tincidunt, convallis dictum nibh convallis.',
-    actions: {
-      comments: 1094,
-      retweets: 5,
-      likes: 8402
-    }
-  }
-})
+withDefaults(defineProps<{ tweet: Tweet }>(), { tweet: tweetData })
+
+defineEmits([
+  'on-comment-clicked',
+  'on-retweet-clicked',
+  'on-like-clicked',
+  'on-share-clicked'
+])
 </script>
 
 <style lang="stylus" scoped>
