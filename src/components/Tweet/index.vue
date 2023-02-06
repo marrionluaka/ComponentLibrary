@@ -1,18 +1,33 @@
 <template lang="pug">
 .tweet
-  TweetThumbnail(:src="author.thumbnail.src" :alt="author.thumbnail.alt")
+  TweetThumbnail(
+    :src="tweet.author.thumbnail.src"
+    :alt="tweet.author.thumbnail.alt"
+  )
 
   div
     TweetAuthor(
-      :name="author.name"
-      :username="author.username"
-      :dateTime="author.date"
+      :name="tweet.author.name"
+      :username="tweet.author.username"
+      :dateTime="tweet.author.date"
     )
-    TweetContent {{ content }}
+    TweetContent {{ tweet.content }}
     .tweet__actions
-      TweetAction(icon="CommentIcon" :count="actions.comments" @click="$emit('on-comment-clicked')")
-      TweetAction(icon="RetweetIcon" :count="actions.retweets" @click="$emit('on-retweet-clicked')")
-      TweetAction(icon="LikeIcon" :count="actions.likes" @click="$emit('on-like-clicked')")
+      TweetAction(
+        icon="CommentIcon"
+        :count="tweet.actions.comments"
+        @click="$emit('on-comment-clicked')"
+      )
+      TweetAction(
+        icon="RetweetIcon"
+        :count="tweet.actions.retweets"
+        @click="$emit('on-retweet-clicked')"
+      )
+      TweetAction(
+        icon="LikeIcon"
+        :count="tweet.actions.likes"
+        @click="$emit('on-like-clicked')"
+      )
       TweetAction(icon="ShareIcon" @click="$emit('on-share-clicked')")
 </template>
 
@@ -47,21 +62,23 @@ type Tweet = {
   actions: Actions
 }
 
-withDefaults(defineProps<Tweet>(), {
-  author: {
-    name: 'John Doe',
-    username: '@johndoe',
-    date: DateTime.now(),
-    thumbnail: {
-      src: 'https://xsgames.co/randomusers/avatar.php?g=male',
-      alt: 'User thumbnail'
+withDefaults(defineProps<{ tweet: Tweet }>(), {
+  tweet: {
+    author: {
+      name: 'John Doe',
+      username: '@johndoe',
+      date: DateTime.now(),
+      thumbnail: {
+        src: 'https://xsgames.co/randomusers/avatar.php?g=male',
+        alt: 'User thumbnail'
+      }
+    },
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed bibendum neque sed dui tincidunt, convallis dictum nibh convallis.',
+    actions: {
+      comments: 1094,
+      retweets: 5,
+      likes: 8402
     }
-  },
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed bibendum neque sed dui tincidunt, convallis dictum nibh convallis.',
-  actions: {
-    comments: 1094,
-    retweets: 5,
-    likes: 8402
   }
 })
 </script>
