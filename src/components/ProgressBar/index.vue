@@ -20,7 +20,7 @@ const props = defineProps({
   },
   containerClasses: {
     type: String,
-    default: 'bg-indigo-500'
+    default: 'bg-lime-600'
   }
 })
 const MIN = 0

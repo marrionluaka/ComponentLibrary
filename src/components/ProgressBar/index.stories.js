@@ -44,5 +44,6 @@ const Template = args => ({
 
 export const Primary = Template.bind({})
 Primary.args = {
-  value: 25
+  value: 50,
+  containerClasses: 'bg-indigo-500'
 }
