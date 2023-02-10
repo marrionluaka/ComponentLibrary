@@ -5,7 +5,7 @@ export default {
   component: TemperatureConverter
 }
 
-const Template = args => ({
+const Template = () => ({
   template: `
     <TemperatureConverter />
   `,
