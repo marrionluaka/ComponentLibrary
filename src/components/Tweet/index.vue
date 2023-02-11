@@ -1,6 +1,6 @@
 <template lang="pug">
 .tweet
-  TweetThumbnail(
+  SharedThumbnail(
     :src="tweet.author.thumbnail.src"
     :alt="tweet.author.thumbnail.alt"
   )
@@ -38,7 +38,7 @@ import tweetData from './data'
 import TweetAuthor from './TweetAuthor.vue'
 import TweetAction from './TweetAction.vue'
 import TweetContent from './TweetContent.vue'
-import TweetThumbnail from './TweetThumbnail.vue'
+import { SharedThumbnail } from '../shared'
 
 type Author = {
   name: string

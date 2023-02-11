@@ -1,5 +1,5 @@
 <template lang="pug">
-img.thumbnail(:src="src" :alt="alt")
+img.thumbnail(:src="src" :alt="alt" :class="size")
 </template>
 
 <script setup lang="ts">
@@ -11,13 +11,20 @@ defineProps({
   alt: {
     type: String,
     required: true
+  },
+  size: {
+    type: String,
+    default: 'md'
   }
 })
 </script>
 
 <style lang="stylus" scoped>
 .thumbnail
-  --thumbnail-size 48px
+  &.sm
+    --thumbnail-size 32px
+  &.md
+    --thumbnail-size 48px
 
   width var(--thumbnail-size)
   height var(--thumbnail-size)
