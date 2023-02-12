@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon'
+import { faker } from '@faker-js/faker'
 
 export default {
   author: {
@@ -6,9 +7,9 @@ export default {
     username: '@johndoe',
     date: DateTime.now(),
     thumbnail: {
-      src: 'https://xsgames.co/randomusers/avatar.php?g=male',
-      alt: 'User thumbnail'
-    }
+      src: faker.image.avatar(),
+      alt: 'User thumbnail',
+    },
   },
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed bibendum neque sed dui tincidunt, convallis dictum nibh convallis.',
   actions: {
