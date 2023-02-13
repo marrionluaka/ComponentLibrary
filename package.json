@@ -9,8 +9,8 @@
     "test": "vitest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "vue-cli-service lint",
-    "chromatic": "npx chromatic --project-token=e31e7d3e7c42"
+    "serve-storybook": "serve storybook-static",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@heroicons/vue": "2.0.13",
