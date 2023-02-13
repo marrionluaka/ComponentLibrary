@@ -62,7 +62,7 @@ type Tweet = {
   actions: Actions
 }
 
-withDefaults(defineProps<{ tweet: Tweet }>(), { tweet: tweetData })
+withDefaults(defineProps<{ tweet: Tweet }>(), { tweet: tweetData as any })
 
 defineEmits([
   'on-comment-clicked',

@@ -22,7 +22,7 @@ const props = defineProps({
 defineEmits(['click'])
 
 const { ...icons } = TweetIcon
-const tweetIcon = computed(() => icons[props.icon])
+const tweetIcon = computed(() => (icons as any)[props.icon])
 
 function formatCount(count: number): string {
   return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
