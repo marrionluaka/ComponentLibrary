@@ -44,6 +44,9 @@ function onSubmit(e: Event) {
     @apply w-full border-0
     color #787878
 
+    &::placeholder
+      @apply text-gray-300
+
   &__submit
     appearance none
     color #8aba7b
