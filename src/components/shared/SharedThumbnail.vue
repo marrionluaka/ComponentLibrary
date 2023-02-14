@@ -21,8 +21,10 @@ defineProps({
 
 <style lang="stylus" scoped>
 .thumbnail
-  &.sm
+  &.xs
     --thumbnail-size 32px
+  &.sm
+    --thumbnail-size 42px
   &.md
     --thumbnail-size 48px
 
