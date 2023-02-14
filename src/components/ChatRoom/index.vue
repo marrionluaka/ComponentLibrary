@@ -1,5 +1,5 @@
 <template lang="pug">
-section.space-y-6(ref="SectionRef")
+section(ref="SectionRef")
   .chatMessage.flex.gap-x-3(v-for="(chatMessage, index) in chatMessages" :class="{ 'flex-row-reverse': index % 2 !== 0 }")
     SharedThumbnail(
       :src="chatMessage.user.thumbnail.src"
@@ -42,6 +42,6 @@ function format(dateTime: string) {
 
 <style lang="stylus" scoped>
 section
-  @apply p-6 overflow-scroll
+  @apply space-y-6 p-6 overflow-scroll
   border-color #F4F4F4
 </style>
