@@ -4,7 +4,13 @@
     SharedIcon.w-6(iconName="PlusCircleIcon" iconStyle="outline")
 
   form.notification-form__input-form(@submit.prevent="onSubmit")
-    input.notification-form__message(v-model="message" type="text" placeholder="Type your message here...")
+    input.notification-form__message(
+      name="post"
+      type="text"
+      ref="PostRef"
+      v-model="message"
+      placeholder="Type your message here..."
+    )
 
     button.notification-form__submit(type="submit")
       SharedIcon.w-6(iconName="ArrowRightIcon")
@@ -16,11 +22,13 @@ import { SharedIcon } from '../shared'
 
 const emit = defineEmits(['submit', 'option-menu'])
 const message = ref('')
+const PostRef = ref<HTMLInputElement | null>(null)
 
-function onSubmit() {
+function onSubmit(e: Event) {
   if (message.value.trim() === '') return
 
   emit('submit', message.value)
+  PostRef.value?.focus()
   message.value = ''
 }
 </script>
