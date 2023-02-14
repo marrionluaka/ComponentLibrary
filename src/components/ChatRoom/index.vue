@@ -42,6 +42,6 @@ function format(dateTime: string) {
 
 <style lang="stylus" scoped>
 section
-  @apply space-y-6 p-6 overflow-scroll
+  @apply space-y-6 p-6 overflow-y-scroll
   border-color #F4F4F4
 </style>
