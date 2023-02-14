@@ -6,7 +6,7 @@
     template(v-slot:header)
       NotificationHeader
 
-    section.h-72.overflow-scroll
+    section.h-72.overflow-y-scroll
       NotificationTile(v-for="user in users" :user="user" message="commented on your photo")
 
     template(v-slot:footer)
