@@ -13,6 +13,6 @@ export function createRandomUser(): User {
       src: faker.image.avatar(),
       alt: faker.image.avatar(),
     },
-    isOnline: getRandomNumber(0, 1) % 2 === 0
+    isOnline: getRandomNumber() % 2 === 0
   }
 }

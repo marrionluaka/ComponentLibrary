@@ -11,7 +11,7 @@ export default function createNewTextMessage(messagesData: Message[], message: s
     content: message,
     createdAt: new Date(faker.date.recent()).toISOString()
   }
-  const messageId = getRandomNumber(0, 1)
+  const messageId = getRandomNumber()
   const lastIndex = messagesData.length - 1
   const lastMessage = messagesData[lastIndex]
 
