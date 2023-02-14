@@ -6,7 +6,7 @@
     template(v-slot:header)
       NotificationHeader
 
-    section.h-72
+    section.h-72.overflow-scroll
       NotificationTile(v-for="user in users" :user="user" message="commented on your photo")
 
     template(v-slot:footer)
@@ -44,8 +44,4 @@ useClickOutside({ ref: NotificationRef, callback: () => toggleActive(false) })
 .notification-btn
   background-color #8aba7b
   color white
-
-section
-  @apply overflow-scroll border-y
-  border-color #F4F4F4
 </style>
