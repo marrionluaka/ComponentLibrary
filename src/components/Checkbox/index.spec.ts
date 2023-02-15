@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Checkbox from './Checkbox.vue'
+import Checkbox from './index.vue'
 
 describe('Checkbox spec', () => {
   let wrapper: any

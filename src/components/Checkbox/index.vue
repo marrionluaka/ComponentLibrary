@@ -16,7 +16,7 @@
 <script setup lang="ts">
 defineProps({
   id: {
-    type: String,
+    type: [String, Number],
     required: true
   },
   name: {

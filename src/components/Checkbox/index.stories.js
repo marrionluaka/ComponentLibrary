@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import Checkbox from './Checkbox.vue'
+import Checkbox from './index.vue'
 
 export default {
   title: 'Example/Checkbox',
