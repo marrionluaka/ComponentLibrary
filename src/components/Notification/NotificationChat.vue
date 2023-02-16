@@ -1,5 +1,5 @@
 <template lang="pug">
-.max-w-sm(ref="NotificationRef")
+.max-w-sm.inline-block(ref="NotificationRef")
   NotificationButton.notification-btn(:active="active" iconName="ChatBubbleLeftIcon" @click="toggleActive()")
 
   NotificationPopup(v-if="active")
