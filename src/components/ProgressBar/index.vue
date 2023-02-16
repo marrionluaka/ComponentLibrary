@@ -1,11 +1,11 @@
 <template lang="pug">
 .progress.bg-neutral-100.border.border-neutral-200(data-testid="progress-container")
-  .progress__bar.rounded-full.h-full(
+  .progress__bar.rounded-full.h-full.transition-all(
     role="progressbar"
     aria-valuemin="min"
     aria-valuemax="max"
     :aria-valuenow="value"
-    :class="containerClasses"
+    :class="[containerClasses, `progress__bar--${variant}`]"
     data-testid="progress-bar" :style="`width: ${value}%`"
   )
     slot
@@ -26,6 +26,10 @@ const props = defineProps({
     type: Number,
     default: 100,
   },
+  variant: {
+    type: String,
+    default: ''
+  },
   containerClasses: {
     type: String,
     default: 'bg-lime-600'
@@ -38,4 +42,7 @@ const props = defineProps({
   @apply rounded-full overflow-hidden
   &__bar
     @apply text-white text-center
+
+    &--with-transition
+      transition: width .5s ease-in-out
 </style>

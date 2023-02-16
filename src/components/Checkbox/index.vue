@@ -8,7 +8,7 @@
       :value="value"
       :checked="isChecked"
       class="focus:ring-indigo-500"
-      @change="$emit('update:modelValue', $event.target.value)"
+      @change.stop="$emit('update:modelValue', $event.target.value)"
     )
     slot
 </template>
