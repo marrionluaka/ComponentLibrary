@@ -4,7 +4,7 @@
     TodoCompeleted(:name="username" :numOfGoalsCompleted="items.length" :dateCompleted="fakeDate")
 
   .todo__form(v-else)
-    p.todo__title To-do during today
+    p.todo__title Task for the day
 
     .todo__items
       TodoItem(v-for="item of items" :item="item" @change="$emit('change', $event)")
@@ -69,5 +69,6 @@ const percentage = computed(() => {
     @apply flex items-center gap-x-2 mt-10 max-w-sm
 
   &__tracker
+    @apply text-sm
     color #bbb9b0
 </style>
