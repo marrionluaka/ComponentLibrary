@@ -1,31 +1,36 @@
 <template lang="pug">
 .progress.bg-neutral-100.border.border-neutral-200(data-testid="progress-container")
-  .progress__bar.rounded-full(
+  .progress__bar.rounded-full.h-full(
     role="progressbar"
-    aria-valuemin="MIN"
-    aria-valuemax="MAX"
-    :aria-valuenow="clampedValue"
+    aria-valuemin="min"
+    aria-valuemax="max"
+    :aria-valuenow="value"
     :class="containerClasses"
-    data-testid="progress-bar" :style="`width: ${clampedValue}%`"
-  ) {{ clampedValue }}%
+    data-testid="progress-bar" :style="`width: ${value}%`"
+  )
+    slot
+      | &nbsp;
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
 const props = defineProps({
   value: {
     type: Number,
     required: true
+  },
+  min: {
+    type: Number,
+    default: 0,
+  },
+  max: {
+    type: Number,
+    default: 100,
   },
   containerClasses: {
     type: String,
     default: 'bg-lime-600'
   }
 })
-const MIN = 0
-const MAX = 100
-const clampedValue = computed(() => Math.min(Math.max(MIN, props.value), MAX))
 </script>
 
 <style lang="stylus" scoped>
