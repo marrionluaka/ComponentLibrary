@@ -4,7 +4,7 @@ span {{ time }}
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { DateTime } from 'luxon'
+import formatWithPattern from '../../lib/format-date-pattern'
 
 const props = defineProps({
   dateTime: {
@@ -13,9 +13,5 @@ const props = defineProps({
   }
 })
 
-const time = computed(() => format(props.dateTime))
-
-function format(dateTime: string) {
-  return DateTime.fromISO(dateTime).toFormat('LLL dd')
-}
+const time = computed(() => formatWithPattern(props.dateTime, 'LLL dd'))
 </script>

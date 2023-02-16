@@ -12,7 +12,6 @@ section(ref="SectionRef")
 </template>
 
 <script setup lang="ts">
-import { DateTime } from 'luxon'
 import { PropType, ref, nextTick, watch, toRef } from 'vue'
 
 import { SharedThumbnail } from '../shared'
@@ -34,10 +33,6 @@ watch(toRef(props, 'chatMessages'), () => {
     section?.scroll({ top: section.scrollHeight, behavior: 'smooth' })
   })
 })
-
-function format(dateTime: string) {
-  return DateTime.fromISO(dateTime).toLocaleString(DateTime.TIME_24_SIMPLE)
-}
 </script>
 
 <style lang="stylus" scoped>
