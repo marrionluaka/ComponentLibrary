@@ -1,7 +1,8 @@
+import { ref } from 'vue'
+
 import Tab from './Tab.vue'
 import Tabs from './index.vue'
 import TabPanel from './TabPanel.vue'
-import { computed, ref } from 'vue'
 
 export default {
   title: 'Example/Tabs',
