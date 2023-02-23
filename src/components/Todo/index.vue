@@ -1,7 +1,7 @@
 <template lang="pug">
 .todo
   .todo__completed(v-if="percentage === 100")
-    TodoCompeleted(:name="username" :numOfGoalsCompleted="items.length" :dateCompleted="fakeDate")
+    TodoCompleted(:name="username" :numOfGoalsCompleted="items.length" :dateCompleted="fakeDate")
 
   .todo__form(v-else)
     p.todo__title Task for the day
@@ -19,7 +19,7 @@ import { computed, PropType } from 'vue'
 
 import TodoItem from './TodoItem.vue'
 import fakeDate from '../../lib/getFakeDate'
-import TodoCompeleted from './TodoCompeleted.vue'
+import TodoCompleted from './TodoCompleted.vue'
 import ProgressBar from '../ProgressBar/index.vue'
 
 type TodoItem = {
