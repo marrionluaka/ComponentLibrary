@@ -1,5 +1,5 @@
 <template lang="pug">
-.tweet
+article.tweet
   SharedThumbnail(
     :src="tweet.author.thumbnail.src"
     :alt="tweet.author.thumbnail.alt"
@@ -16,19 +16,19 @@
       TweetAction(
         icon="CommentIcon"
         :count="tweet.actions.comments"
-        @click="$emit('on-comment-clicked')"
+        @click="$emit('comment')"
       )
       TweetAction(
         icon="RetweetIcon"
         :count="tweet.actions.retweets"
-        @click="$emit('on-retweet-clicked')"
+        @click="$emit('retweet')"
       )
       TweetAction(
         icon="LikeIcon"
         :count="tweet.actions.likes"
-        @click="$emit('on-like-clicked')"
+        @click="$emit('like')"
       )
-      TweetAction(icon="ShareIcon" @click="$emit('on-share-clicked')")
+      TweetAction(icon="ShareIcon" @click="$emit('share')")
 </template>
 
 <script setup lang="ts">
@@ -64,12 +64,7 @@ type Tweet = {
 
 withDefaults(defineProps<{ tweet: Tweet }>(), { tweet: tweetData as any })
 
-defineEmits([
-  'on-comment-clicked',
-  'on-retweet-clicked',
-  'on-like-clicked',
-  'on-share-clicked'
-])
+defineEmits(['comment', 'retweet', 'like', 'share'])
 </script>
 
 <style lang="stylus" scoped>

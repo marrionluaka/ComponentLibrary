@@ -1,6 +1,6 @@
 <template lang="pug">
 .dropdown(ref="dropdown" data-test="dropdown" :class="{ open: isOpen }")
-  .dropdown__selected(data-test="dropdown-selected" @click="isOpen = !isOpen")
+  button.appearance-none.text-left.dropdown__selected(data-test="dropdown-selected" @click="isOpen = !isOpen")
     slot(name="currentOption")
       | {{ defaultOption }}
 

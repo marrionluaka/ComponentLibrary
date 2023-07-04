@@ -16,10 +16,10 @@ const Template = args => ({
   template: `
     <Tweet
       v-bind="args"
-      @on-comment-clicked="args.onCommentClicked"
-      @on-retweet-clicked="args.onRetweetClicked"
-      @on-like-clicked="args.onLikeClicked"
-      @on-share-clicked="args.onShareClicked"
+      @comment="args.onCommentClicked"
+      @retweet="args.onRetweetClicked"
+      @like="args.onLikeClicked"
+      @share="args.onShareClicked"
     />
   `,
 
