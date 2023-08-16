@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 sandbox
 todo.md
-ui
+ui/*
