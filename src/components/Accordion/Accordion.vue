@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import { ref, Ref, PropType } from 'vue'
-
-const props = defineProps({
-  isOpen: {
-    type: Boolean as PropType<boolean>,
-    default: true
-  }
-})
-
-const isActive: Ref<boolean> = ref(props.isOpen)
-</script>
-
 <template>
   <div class="max-w-md" data-test="accordion">
     <div @click="isActive = !isActive" data-test="accordion-title">
@@ -23,3 +10,16 @@ const isActive: Ref<boolean> = ref(props.isOpen)
     </slot>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref, Ref, PropType } from 'vue'
+
+const props = defineProps({
+  isOpen: {
+    type: Boolean as PropType<boolean>,
+    default: true
+  }
+})
+
+const isActive: Ref<boolean> = ref(props.isOpen)
+</script>

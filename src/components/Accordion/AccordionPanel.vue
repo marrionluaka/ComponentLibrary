@@ -1,3 +1,11 @@
+<template>
+  <div class="accordion-panel" :class="{ active: isOpen }" data-test="accordion-panel">
+    <div class="p-2">
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import type { PropType } from 'vue'
 
@@ -8,14 +16,6 @@ defineProps({
   }
 })
 </script>
-
-<template>
-  <div class="accordion-panel" :class="{ active: isOpen }" data-test="accordion-panel">
-    <div class="p-2">
-      <slot></slot>
-    </div>
-  </div>
-</template>
 
 <style lang="stylus" scoped>
 .accordion-panel
