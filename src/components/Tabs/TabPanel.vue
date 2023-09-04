@@ -1,6 +1,7 @@
-<template lang="pug">
-div(v-if="activeTabID === id")
-  slot
+<template>
+  <div v-if="activeTabID === id">
+    <slot />
+  </div>
 </template>
 
 <script setup lang="ts">

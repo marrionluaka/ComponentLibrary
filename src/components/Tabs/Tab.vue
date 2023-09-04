@@ -1,13 +1,17 @@
-<template lang="pug">
-button.appearance-none(
-  v-if="as === 'button'"
-  @click="setActiveTabID(id)"
-  :disabled="disabled"
-  :class="{ active: activeTabID === id }"
-)
-  slot
-div(v-else)
-  slot(:active="activeTabID === id" :setActiveTabID="setActiveTabID")
+<template>
+  <button
+    class="appearance-none"
+    v-if="as === 'button'"
+    @click="setActiveTabID(id)"
+    :disabled="!!disabled"
+    :class="{ active: activeTabID === id }"
+  >
+    <slot />
+  </button>
+
+  <div v-else>
+    <slot :active="activeTabID === id" :setActiveTabID="setActiveTabID" />
+  </div>
 </template>
 
 <script setup lang="ts">
