@@ -1,14 +1,22 @@
-<template lang="pug">
-section(ref="SectionRef")
-  .chatMessage.flex.gap-x-3(v-for="(chatMessage, index) in chatMessages" :class="{ 'flex-row-reverse': index % 2 !== 0 }")
-    SharedThumbnail(
-      :src="chatMessage.user.thumbnail.src"
-      :alt="chatMessage.user.thumbnail.alt"
-      size="sm"
-    )
-
-    .flex.flex-col.gap-y-3
-      NotificationMessage(v-for="message in chatMessage.messages" :message="message" :alternate="index % 2 !== 0")
+<template>
+  <section ref="SectionRef">
+    <div
+      class="chatMessage flex gap-x-3"
+      v-for="(chatMessage, index) in chatMessages"
+      :key="chatMessage.id"
+      :class="{ 'flex-row-reverse': index % 2 !== 0 }"
+    >
+      <SharedThumbnail :src="chatMessage.user.thumbnail.src" :alt="chatMessage.user.thumbnail.alt" size="sm" />
+      <div class="flex flex-col gap-y-3">
+        <NotificationMessage
+          v-for="message in chatMessage.messages"
+          :key="message.createdAt"
+          :message="message"
+          :alternate="index % 2 !== 0"
+        />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">

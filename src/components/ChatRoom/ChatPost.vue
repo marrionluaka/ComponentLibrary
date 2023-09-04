@@ -1,21 +1,3 @@
-<template lang="pug">
-.notification-form
-  button.notification-form__options(@click="$emit('option-menu')")
-    SharedIcon.w-6(iconName="PlusCircleIcon" iconStyle="outline")
-
-  form.notification-form__input-form(@submit.prevent="onSubmit")
-    input.notification-form__message(
-      name="post"
-      type="text"
-      ref="PostRef"
-      v-model="message"
-      placeholder="Type your message here..."
-    )
-
-    button.notification-form__submit(type="submit")
-      SharedIcon.w-6(iconName="ArrowRightIcon")
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import { SharedIcon } from '../shared'
@@ -32,6 +14,27 @@ function onSubmit(e: Event) {
   message.value = ''
 }
 </script>
+
+<template>
+  <div class="notification-form">
+    <button class="notification-form__options" @click="$emit('option-menu')">
+      <SharedIcon class="w-6" iconName="PlusCircleIcon" iconStyle="outline"></SharedIcon>
+    </button>
+    <form class="notification-form__input-form" @submit.prevent="onSubmit">
+      <input
+        class="notification-form__message"
+        name="post"
+        type="text"
+        ref="PostRef"
+        v-model="message"
+        placeholder="Type your message here..."
+      />
+      <button class="notification-form__submit" type="submit">
+        <SharedIcon class="w-6" iconName="ArrowRightIcon"></SharedIcon>
+      </button>
+    </form>
+  </div>
+</template>
 
 <style lang="stylus" scoped>
 .notification-form
