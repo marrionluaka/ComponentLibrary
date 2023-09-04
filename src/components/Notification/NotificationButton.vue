@@ -1,7 +1,8 @@
-<template lang="pug">
-SharedButton.notification-btn(@click="$emit('click', $event)" :class="{ active: active }")
-  SharedIcon.w-5(:iconName="iconName" :iconStyle="iconStyle")
-  span.notification-btn__count(v-if="count > 0") {{ getNotificationCount(count) }}
+<template>
+  <SharedButton class="notification-btn" @click="$emit('click', $event)" :class="{ active: active }">
+    <SharedIcon class="w-5" :iconName="iconName" :iconStyle="iconStyle" />
+    <span class="notification-btn__count" v-if="count > 0">{{ getNotificationCount(count) }}</span>
+  </SharedButton>
 </template>
 
 <script setup lang="ts">
@@ -31,7 +32,6 @@ defineEmits(['click'])
 function getNotificationCount(count: number): string {
   return props.count >= 9 ? '9+' : String(count)
 }
-
 </script>
 
 <style lang="stylus" scoped>

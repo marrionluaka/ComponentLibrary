@@ -1,15 +1,19 @@
-<template lang="pug">
-.max-w-sm.inline-block(ref="NotificationRef")
-  NotificationButton.notification-btn(:active="active" iconName="ChatBubbleLeftIcon" @click="toggleActive()")
+<template>
+  <div class="max-w-sm inline-block" ref="NotificationRef">
+    <NotificationButton class="notification-btn" :active="active" iconName="ChatBubbleLeftIcon" @click="toggleActive()" />
 
-  NotificationPopup(v-if="active")
-    template(v-slot:header)
-      NotificationHeader(:theme="chatTheme" title="Chat")
+    <NotificationPopup v-if="active">
+      <template #header>
+        <NotificationHeader :theme="chatTheme" title="Chat"></NotificationHeader>
+      </template>
 
-    ChatRoom.h-72(:chatMessages="messages")
+      <ChatRoom class="h-72" :chatMessages="messages"></ChatRoom>
 
-    template(v-slot:footer)
-      ChatPost(@submit="$emit('submit', $event)")
+      <template #footer>
+        <ChatPost @submit="$emit('submit', $event)"></ChatPost>
+      </template>
+    </NotificationPopup>
+  </div>
 </template>
 
 <script setup lang="ts">

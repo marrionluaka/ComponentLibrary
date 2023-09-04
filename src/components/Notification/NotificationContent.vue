@@ -1,7 +1,8 @@
-<template lang="pug">
-.tile-content
-  span.tile-content__username {{ username }}
-  span.tile-content__message {{ message }}
+<template>
+  <div class="tile-content">
+    <span class="tile-content__username">{{ username }}</span>
+    <span class="tile-content__message">{{ message }}</span>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -1,12 +1,15 @@
-<template lang="pug">
-.popup
-  header
-    slot(name="header")
+<template>
+  <div class="popup">
+    <header>
+      <slot name="header"></slot>
+    </header>
 
-  slot
+    <slot />
 
-  footer
-    slot(name="footer")
+    <footer>
+      <slot name="footer"></slot>
+    </footer>
+  </div>
 </template>
 
 <style lang="stylus" scoped>

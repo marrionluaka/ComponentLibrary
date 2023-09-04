@@ -1,16 +1,18 @@
-<template lang="pug">
-.max-w-sm.inline-block(ref="NotificationRef")
-  NotificationButton.notification-btn(:count="state.count" :active="active" @click="toggleActive()")
-
-  NotificationPopup(v-if="active")
-    template(v-slot:header)
-      NotificationHeader
-
-    section.h-72.overflow-y-scroll
-      NotificationTile(v-for="user in users" :user="user" message="commented on your photo")
-
-    template(v-slot:footer)
-      button.appearance-none(@click="" style="color: #8aba7b;") See all activities
+<template>
+  <div class="max-w-sm inline-block" ref="NotificationRef">
+    <NotificationButton class="notification-btn" :count="state.count" :active="active" @click="toggleActive()" />
+    <NotificationPopup v-if="active">
+      <template #header>
+        <NotificationHeader />
+      </template>
+      <section class="h-72 overflow-y-scroll">
+        <NotificationTile v-for="user in users" :key="user.username" :user="user" message="commented on your photo" />
+      </section>
+      <template #footer>
+        <button class="appearance-none" @click="void 0" style="color: #8aba7b">See all activities</button>
+      </template>
+    </NotificationPopup>
+  </div>
 </template>
 
 <script setup lang="ts">

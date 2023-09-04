@@ -1,14 +1,19 @@
-<template lang="pug">
-.header
-  .header__icon
-    SharedIcon.w-5(:iconName="theme.displayIconName" :iconStyle="theme.displayIconStyle")
+<template>
+  <div class="header">
+    <div class="header__icon">
+      <SharedIcon class="w-5" :iconName="theme.displayIconName" :iconStyle="theme.displayIconStyle"></SharedIcon>
+    </div>
 
-  .header__title
-    span {{ title }}
+    <div class="header__title">
+      <span>{{ title }}</span>
+    </div>
 
-  .header__action
-    button.appearance-none(@click="$emit('action-clicked')")
-      SharedIcon.w-5(:iconName="theme.actionIconName" :iconStyle="theme.actionIconStyle")
+    <div class="header__action">
+      <button class="appearance-none" @click="$emit('action-clicked')">
+        <SharedIcon class="w-5" :iconName="theme.actionIconName" :iconStyle="theme.actionIconStyle"></SharedIcon>
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

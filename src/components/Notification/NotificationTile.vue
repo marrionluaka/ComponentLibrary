@@ -1,9 +1,11 @@
-<template lang="pug">
-button.tile
-  .flex.gap-x-4.items-center
-    SharedThumbnail(:src="user.thumbnail.src" :alt="user.thumbnail.alt" :size="user.thumbnail.size")
-    NotificationContent(:username="user.username" :message="message")
-  SharedStatus.flex-none.mt-3(v-if="user.isOnline")
+<template>
+  <button class="tile">
+    <div class="flex gap-x-4 items-center">
+      <SharedThumbnail :src="user.thumbnail.src" :alt="user.thumbnail.alt" :size="user.thumbnail.size" />
+      <NotificationContent :username="user.username" :message="message" />
+    </div>
+    <SharedStatus class="flex-none mt-3" v-if="user.isOnline" />
+  </button>
 </template>
 
 <script setup lang="ts">
