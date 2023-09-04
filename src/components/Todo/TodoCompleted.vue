@@ -1,11 +1,13 @@
-<template lang="pug">
-.text-center
-  .mb-6.text-3xl 👏
-  p.mb-3 Congratulations, {{ name }}!
-  p You have achieved great results in {{ date }}!
-  p
-    | {{ goals }} goals were successfully completed 
-    span.text-lg 💪
+<template>
+  <div class="text-center">
+    <div class="mb-6 text-3xl">👏</div>
+    <p class="mb-3">Congratulations, {{ name }}!</p>
+    <p>You have achieved great results in {{ date }}!</p>
+    <p>
+      {{ goals }} goals were successfully completed
+      <span class="text-lg">💪</span>
+    </p>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -36,6 +38,4 @@ const date = computed(() => {
 })
 </script>
 
-<style lang="stylus" scoped>
-
-</style>
+<style lang="stylus" scoped></style>

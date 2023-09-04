@@ -1,17 +1,20 @@
-<template lang="pug">
-.todo
-  .todo__completed(v-if="percentage === 100")
-    TodoCompleted(:name="username" :numOfGoalsCompleted="items.length" :dateCompleted="fakeDate")
+<template>
+  <div class="todo">
+    <div class="todo__completed" v-if="percentage === 100">
+      <TodoCompleted :name="username" :numOfGoalsCompleted="items.length" :dateCompleted="fakeDate" />
+    </div>
 
-  .todo__form(v-else)
-    p.todo__title Task for the day
-
-    .todo__items
-      TodoItem(v-for="item of items" :item="item" @change="$emit('change', $event)")
-
-    .todo__progress
-      ProgressBar.h-2.border-0.w-full(:value="percentage" containerClasses="bg-indigo-500" variant="with-transition")
-      span.todo__tracker {{ numOfCompletedTodos }}/{{ items.length }}
+    <div class="todo__form" v-else>
+      <p class="todo__title">Task for the day</p>
+      <div class="todo__items">
+        <TodoItem v-for="item of items" :key="item.id" :item="item" @change="$emit('change', $event)" />
+      </div>
+      <div class="todo__progress">
+        <ProgressBar class="h-2 border-0 w-full" :value="percentage" containerClasses="bg-indigo-500" variant="with-transition" />
+        <span class="todo__tracker">{{ numOfCompletedTodos }}/{{ items.length }}</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
