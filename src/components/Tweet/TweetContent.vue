@@ -1,6 +1,7 @@
-<template lang="pug">
-p.tweet-content
-  slot
+<template>
+  <p class="tweet-content">
+    <slot />
+  </p>
 </template>
 
 <style lang="stylus" scoped>

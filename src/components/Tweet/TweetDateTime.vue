@@ -1,9 +1,10 @@
-<template lang="pug">
-span {{ time }}
+<template>
+  <span>{{ time }}</span>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { DateTime } from 'luxon'
+import { computed, PropType } from 'vue'
 import formatWithPattern from '../../lib/format-date-pattern'
 
 const props = defineProps({

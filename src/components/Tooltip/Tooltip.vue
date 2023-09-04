@@ -1,7 +1,8 @@
-<template lang="pug">
-.tooltip(data-test="tooltip" @mouseover="isShowing = true" @mouseleave="isShowing = false")
-  .tooltip-content(v-show="isShowing" :class="position" data-test="tooltip-content") {{ content }}
-  slot
+<template>
+  <div class="tooltip" data-test="tooltip" @mouseover="isShowing = true" @mouseleave="isShowing = false">
+    <div class="tooltip-content" v-show="isShowing" :class="position" data-test="tooltip-content">{{ content }}</div>
+    <slot />
+  </div>
 </template>
 
 <script setup lang="ts">

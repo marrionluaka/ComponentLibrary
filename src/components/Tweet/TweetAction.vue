@@ -1,7 +1,8 @@
-<template lang="pug">
-button.appearance-none.tweet-action(@click="$emit('click')")
-  component.tweet-action-icon(:is="tweetIcon")
-  span(v-if="count") {{ formatCount(count) }}
+<template>
+  <button class="appearance-none tweet-action" @click="$emit('click')">
+    <component class="tweet-action-icon" :is="tweetIcon" />
+    <span v-if="count">{{ formatCount(count) }}</span>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -25,7 +26,7 @@ const { ...icons } = TweetIcon
 const tweetIcon = computed(() => (icons as any)[props.icon])
 
 function formatCount(count: number): string {
-  return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 </script>
 

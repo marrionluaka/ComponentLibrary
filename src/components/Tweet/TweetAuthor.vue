@@ -1,13 +1,17 @@
-<template lang="pug">
-.tweet-author
-  span.tweet-author__name {{ name }}
-  span.tweet-author__meta
-    | {{ username }}
-    | &middot; 
-    TweetDateTime(:dateTime="dateTime")
+<template>
+  <div class="tweet-author">
+    <span class="tweet-author__name">{{ name }}</span>
+    <span class="tweet-author__meta">
+      {{ username }}
+      &middot;
+      <TweetDateTime :dateTime="dateTime" />
+    </span>
+  </div>
 </template>
 
 <script setup lang="ts">
+import type { PropType } from 'vue'
+import { DateTime } from 'luxon'
 import TweetDateTime from './TweetDateTime.vue'
 
 defineProps({
