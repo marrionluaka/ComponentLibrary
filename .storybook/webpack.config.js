@@ -3,24 +3,16 @@ const rootPath = path.resolve(__dirname, '../')
 
 module.exports = async ({ config }) => {
   config.module.rules.push({
-    test: /\.pug$/,
-    loader: 'pug-plain-loader',
-  })
-
-  config.module.rules.push({
     test: /\.css$/,
     use: [
       {
         loader: 'postcss-loader',
         options: {
           postcssOptions: {
-            plugins: [
-              require('tailwindcss'),
-              require('autoprefixer'),
-            ],
+            plugins: [require('tailwindcss'), require('autoprefixer')]
           }
-        },
-      },
+        }
+      }
     ],
     include: rootPath
   })
@@ -28,11 +20,13 @@ module.exports = async ({ config }) => {
   config.module.rules.push({
     test: /\.styl(us)?$/,
     use: [
-      'style-loader', 'vue-style-loader', {
+      'style-loader',
+      'vue-style-loader',
+      {
         loader: 'css-loader',
         options: {
           sourceMap: true,
-          importLoaders: 2,
+          importLoaders: 2
         }
       },
       'postcss-loader',
@@ -48,3 +42,4 @@ module.exports = async ({ config }) => {
 
   return config
 }
+

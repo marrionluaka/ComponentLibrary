@@ -9,17 +9,10 @@ module.exports = {
     '^.+\\.vue$': '@vue/vue3-jest'
   },
   transformIgnorePatterns: ['/node_modules'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'vue', 'pug', 'json', 'svg'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'vue', 'json', 'svg'],
   globals: {
     'ts-jest': {
       compiler: 'typescript'
-    },
-    '@vue/vue3-jest': {
-      pug: {
-        filename: 'pug',
-        doctype: 'html',
-        basedir: './'
-      }
     }
   }
 }
