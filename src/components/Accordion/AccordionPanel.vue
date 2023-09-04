@@ -1,7 +1,7 @@
 <template>
   <div class="accordion-panel" :class="{ active: isOpen }" data-test="accordion-panel">
     <div class="p-2">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
