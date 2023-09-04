@@ -1,15 +1,18 @@
-<template lang="pug">
-.progress.bg-neutral-100.border.border-neutral-200(data-testid="progress-container")
-  .progress__bar.rounded-full.h-full.transition-all(
-    role="progressbar"
-    aria-valuemin="min"
-    aria-valuemax="max"
-    :aria-valuenow="value"
-    :class="[containerClasses, `progress__bar--${variant}`]"
-    data-testid="progress-bar" :style="`width: ${value}%`"
-  )
-    slot
-      | &nbsp;
+<template>
+  <div class="progress bg-neutral-100 border border-neutral-200" data-testid="progress-container">
+    <div
+      class="progress__bar rounded-full h-full transition-all"
+      role="progressbar"
+      aria-valuemin="min"
+      aria-valuemax="max"
+      :aria-valuenow="value"
+      :class="[containerClasses, `progress__bar--${variant}`]"
+      data-testid="progress-bar"
+      :style="`width: ${value}%`"
+    >
+      <slot>&nbsp;</slot>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -20,11 +23,11 @@ const props = defineProps({
   },
   min: {
     type: Number,
-    default: 0,
+    default: 0
   },
   max: {
     type: Number,
-    default: 100,
+    default: 100
   },
   variant: {
     type: String,
