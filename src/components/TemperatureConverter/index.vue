@@ -1,14 +1,15 @@
-<template lang="pug">
-.temperature
-  .temperature__control
-    TextInput(:value="celsiusInput" @input="convertToFahrenheit" data-testid="celsius")
-    Label Celsius
-
-  .temperature__equals =
-
-  .temperature__control
-    TextInput(:value="fahrenheitInput" @input="convertToCelsius" data-testid="fahrenheit")
-    Label Fahrenheit
+<template>
+  <div class="temperature">
+    <div class="temperature__control">
+      <TextInput :value="celsiusInput" @input="convertToFahrenheit" data-testid="celsius"></TextInput>
+      <Label>Celsius</Label>
+    </div>
+    <div class="temperature__equals">=</div>
+    <div class="temperature__control">
+      <TextInput :value="fahrenheitInput" @input="convertToCelsius" data-testid="fahrenheit"></TextInput>
+      <Label>Fahrenheit</Label>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

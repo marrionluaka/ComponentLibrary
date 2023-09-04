@@ -1,6 +1,7 @@
-<template lang="pug">
-p
-  slot
+<template>
+  <p>
+    <slot />
+  </p>
 </template>
 
 <style lang="stylus" scoped>

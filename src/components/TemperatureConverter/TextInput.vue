@@ -1,5 +1,5 @@
-<template lang="pug">
-input(:value="value" @input="$emit('input', $event)")
+<template>
+  <input :value="value" @input="$emit('input', $event)" />
 </template>
 
 <script setup lang="ts">
@@ -19,3 +19,4 @@ input
   height: 35px
   border: 1px solid var(--gray)
 </style>
+
