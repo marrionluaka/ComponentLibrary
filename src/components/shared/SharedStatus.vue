@@ -1,5 +1,5 @@
-<template lang="pug">
-span.status(:class="variant")
+<template>
+  <span class="status" :class="variant" />
 </template>
 
 <script setup lang="ts">

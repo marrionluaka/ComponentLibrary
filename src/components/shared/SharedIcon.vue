@@ -1,5 +1,5 @@
-<template lang="pug">
-component(:is="icon")
+<template>
+  <component :is="icon" />
 </template>
 
 <script setup lang="ts">

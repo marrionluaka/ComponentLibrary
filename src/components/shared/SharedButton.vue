@@ -1,6 +1,7 @@
-<template lang="pug">
-button.shared-button(@click="$emit('click', $event)")
-  slot
+<template>
+  <button class="shared-button" @click="$emit('click', $event)">
+    <slot />
+  </button>
 </template>
 
 <script setup lang="ts">

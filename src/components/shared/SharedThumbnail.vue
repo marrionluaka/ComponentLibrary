@@ -1,5 +1,5 @@
-<template lang="pug">
-img.thumbnail(:src="src" :alt="alt" :class="size")
+<template>
+  <img class="thumbnail" :src="src" :alt="alt" :class="size" />
 </template>
 
 <script setup lang="ts">
