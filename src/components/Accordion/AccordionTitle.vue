@@ -1,6 +1,6 @@
 <template>
   <button class="accordion-title" data-test="accordion-title" @click="$emit('click')">
-    <slot></slot>
+    <slot />
   </button>
 </template>
 
