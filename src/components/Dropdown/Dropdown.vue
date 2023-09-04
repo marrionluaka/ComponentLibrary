@@ -1,18 +1,22 @@
-<template lang="pug">
-.dropdown(ref="dropdown" data-test="dropdown" :class="{ open: isOpen }")
-  button.appearance-none.text-left.dropdown__selected(data-test="dropdown-selected" @click="isOpen = !isOpen")
-    slot(name="currentOption")
-      | {{ defaultOption }}
+<template>
+  <div class="dropdown" ref="dropdown" data-test="dropdown" :class="{ open: isOpen }">
+    <button class="appearance-none text-left dropdown__selected" data-test="dropdown-selected" @click="isOpen = !isOpen">
+      <slot name="currentOption">{{ defaultOption }}</slot>
+    </button>
 
-  ul.dropdown__items
-    li.pb-1(v-for="option in options" :key="option.value")
-      button.appearance-none.bg-transparent.w-full.text-left(
-        :data-test="`dropdown-item-${option.value}`"
-        @click="closeDropdown(option)"
-        @mouseover="activeItem = option.value"
-      )
-        slot(:option="getOption(option)")
-          | {{ option.display }}
+    <ul class="dropdown__items">
+      <li class="pb-1" v-for="option in options" :key="option.value">
+        <button
+          class="appearance-none bg-transparent w-full text-left"
+          :data-test="`dropdown-item-${option.value}`"
+          @click="closeDropdown(option)"
+          @mouseover="activeItem = option.value"
+        >
+          <slot :option="getOption(option)">{{ option.display }}</slot>
+        </button>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -20,7 +24,7 @@ import { onMounted, onUnmounted, ref, Ref, PropType } from 'vue'
 
 export interface IOption {
   display: string
-  value: string | number
+  value: string
 }
 
 const props = defineProps({
