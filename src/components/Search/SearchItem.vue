@@ -1,6 +1,7 @@
-<template lang="pug">
-a(class="block border-b border-gray-200 px-3 py-2" :href="src" data-test="search-link")
-  slot
+<template>
+  <a class="block border-b border-gray-200 px-3 py-2" :href="src" data-test="search-link">
+    <slot />
+  </a>
 </template>
 
 <script lang="ts">
