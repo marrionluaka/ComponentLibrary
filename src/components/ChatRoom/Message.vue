@@ -1,3 +1,15 @@
+<template>
+  <div class="flex items-center gap-x-3" :class="{ 'flex-row-reverse': alternate }">
+    <NotificationSpeech
+      v-if="message.type === 'text'"
+      class="text-sm"
+      :text="message.content"
+      :variant="alternate ? 'author-speech' : ''"
+    />
+    <div class="time">{{ formatToLocalString(message.createdAt) }}</div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { PropType } from 'vue'
 
@@ -16,18 +28,6 @@ defineProps({
   }
 })
 </script>
-
-<template>
-  <div class="flex items-center gap-x-3" :class="{ 'flex-row-reverse': alternate }">
-    <NotificationSpeech
-      v-if="message.type === 'text'"
-      class="text-sm"
-      :text="message.content"
-      :variant="alternate ? 'author-speech' : ''"
-    />
-    <div class="time">{{ formatToLocalString(message.createdAt) }}</div>
-  </div>
-</template>
 
 <style lang="stylus" scoped>
 .time

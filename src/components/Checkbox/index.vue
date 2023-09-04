@@ -1,22 +1,24 @@
-<template lang="pug">
-.checkbox
-  label(:for="id" class="cursor-pointer")
-    input.checkbox-input(
-      type="checkbox"
-      :id="id"
-      :name="name"
-      :value="value"
-      :checked="isChecked"
-      class="focus:ring-indigo-500"
-      @change.stop="$emit('update:modelValue', $event.target.value)"
-    )
-    slot
+<template>
+  <div class="checkbox">
+    <label class="cursor-pointer" :for="id">
+      <input
+        class="checkbox-input focus:ring-indigo-500"
+        type="checkbox"
+        :id="id"
+        :name="name"
+        :value="value"
+        :checked="isChecked"
+        @change.stop="$emit('update:modelValue', $event?.target?.value)"
+      />
+      <slot />
+    </label>
+  </div>
 </template>
 
 <script setup lang="ts">
 defineProps({
   id: {
-    type: [String, Number],
+    type: String,
     required: true
   },
   name: {
@@ -34,7 +36,6 @@ defineProps({
 })
 
 defineEmits(['update:modelValue'])
-
 </script>
 
 <style lang="stylus" scoped>

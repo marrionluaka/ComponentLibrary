@@ -1,3 +1,7 @@
+<template>
+  <div class="speech" :class="variant">{{ text }}</div>
+</template>
+
 <script setup lang="ts">
 defineProps({
   text: {
@@ -10,10 +14,6 @@ defineProps({
   }
 })
 </script>
-
-<template>
-  <div class="speech" :class="variant">{{ text }}</div>
-</template>
 
 <style lang="stylus" scoped>
 .speech

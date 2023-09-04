@@ -1,20 +1,3 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-import { SharedIcon } from '../shared'
-
-const emit = defineEmits(['submit', 'option-menu'])
-const message = ref('')
-const PostRef = ref<HTMLInputElement | null>(null)
-
-function onSubmit(e: Event) {
-  if (message.value.trim() === '') return
-
-  emit('submit', message.value)
-  PostRef.value?.focus()
-  message.value = ''
-}
-</script>
-
 <template>
   <div class="notification-form">
     <button class="notification-form__options" @click="$emit('option-menu')">
@@ -35,6 +18,23 @@ function onSubmit(e: Event) {
     </form>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { SharedIcon } from '../shared'
+
+const emit = defineEmits(['submit', 'option-menu'])
+const message = ref('')
+const PostRef = ref<HTMLInputElement | null>(null)
+
+function onSubmit(e: Event) {
+  if (message.value.trim() === '') return
+
+  emit('submit', message.value)
+  PostRef.value?.focus()
+  message.value = ''
+}
+</script>
 
 <style lang="stylus" scoped>
 .notification-form
