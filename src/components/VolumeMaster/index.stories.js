@@ -9,12 +9,18 @@ export default {
 
 const Template = args => ({
   template: `
-		<VolumeMaster />
+		<VolumeMaster v-bind="args" />
   `,
 
   components: { VolumeMaster },
 
-  setup() {}
+  setup() {
+    return { args }
+  }
 })
 
 export const Primary = Template.bind({})
+Primary.args = {
+  volume: 0.5,
+  max: 2
+}

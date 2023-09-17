@@ -2,7 +2,7 @@ import { nextTick } from 'vue'
 import { expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 
-import VolumeMaster from './index.vue'
+import VolumeMaster, { validateVolumeBounds } from './index.vue'
 
 describe('VolumeMaster specs', () => {
   let wrapper: any
@@ -35,7 +35,7 @@ describe('VolumeMaster specs', () => {
   })
 
   it('renders a disabled button for resetting the volume value when the volume is not strictly equal to 100', async () => {
-    const volumeRange =  wrapper.find('[data-test="volume-range"]')
+    const volumeRange = wrapper.find('[data-test="volume-range"]')
     volumeRange.element.value = 100
 
     await volumeRange.trigger('change')
@@ -44,7 +44,7 @@ describe('VolumeMaster specs', () => {
   })
 
   it('the volume range controls the volume display', async () => {
-    const volumeRange =  wrapper.find('[data-test="volume-range"]')
+    const volumeRange = wrapper.find('[data-test="volume-range"]')
     volumeRange.element.value = 25
 
     await volumeRange.trigger('change')
@@ -62,8 +62,6 @@ describe('VolumeMaster specs', () => {
     expect(wrapper.emitted('volume-reset')).toBeTruthy()
   })
 
-  it('validates that the volume is within acceptable bounds', () => {})
-  it('throws an error for invalid volume', () => {})
   it('validates that the max volume is within acceptable bounds', () => {})
   it('throws an error for invalid max volume', () => {})
 })
