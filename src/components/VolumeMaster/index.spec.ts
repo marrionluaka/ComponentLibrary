@@ -49,7 +49,8 @@ describe('VolumeMaster specs', () => {
 
     await volumeRange.trigger('change')
 
-    expect(wrapper.emitted('volume-update')[0][0]).toBe('25')
+    expect(wrapper.emitted('update-volume')[0][0]).toBe('25')
+    expect(wrapper.find('[data-test="volume-range"]').element.value).toBe('25')
     expect(wrapper.find('[data-test="volume-value"]').text()).toBe('Volume: 25%')
   })
 
@@ -59,9 +60,6 @@ describe('VolumeMaster specs', () => {
 
     expect(wrapper.find('[data-test="volume-range"]').element.value).toBe('100')
     expect(wrapper.find('[data-test="volume-reset"]').element.disabled).toBeTruthy()
-    expect(wrapper.emitted('volume-reset')).toBeTruthy()
+    expect(wrapper.emitted('reset-volume')).toBeTruthy()
   })
-
-  it('validates that the max volume is within acceptable bounds', () => {})
-  it('throws an error for invalid max volume', () => {})
 })
