@@ -4,6 +4,13 @@ export default {
   title: 'Example/VolumeMaster',
   component: VolumeMaster,
   argTypes: {
+    volume: {
+      control: {
+        type: 'number',
+        min: 0,
+        max: 1
+      }
+    },
     max: {
       control: {
         type: 'number',
