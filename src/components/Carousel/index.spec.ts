@@ -1,4 +1,4 @@
-import { expect } from 'vitest'
+import { vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Carousel from './index.vue'
 
@@ -10,11 +10,25 @@ describe('Carousel specs', () => {
     { id: 2, src: 'dog.png', alt: 'dog' },
     { id: 3, src: 'bird.png', alt: 'bird' }
   ]
+  const scrollToMock = vi.fn()
+
+  beforeAll(() => {
+    Object.defineProperty(global.Element.prototype, 'scrollTo', {
+      value: scrollToMock,
+      writable: true
+    })
+  })
+
+  afterEach(() => {
+    scrollToMock.mockClear()
+  })
 
   beforeEach(async () => {
     wrapper = mount(Carousel, {
       propsData: {
-        slides
+        slides,
+        height: 400,
+        width: 600
       }
     })
   })
@@ -37,6 +51,10 @@ describe('Carousel specs', () => {
     await wrapper.setProps({ slides: slides.concat({ id: 4, src: 'test.png', alt: 'test' }) })
 
     expect(wrapper.findAll('[data-testid="carousel-pagination"]')).toHaveLength(4)
+  })
+
+  it('applies the given dimensions to the carousel', () => {
+    expect(wrapper.find('[data-testid="carousel"]').attributes().style).toContain('--width: 600px; --height: 400px;')
   })
 
   it('displays the next item in the queue', async () => {
@@ -82,5 +100,9 @@ describe('Carousel specs', () => {
     await wrapper.findAll('[data-testid="carousel-pagination"]').at(1).trigger('click')
     expect(wrapper.find('[data-testid="carousel-image-2"]').classes()).toContain('selected')
     expect(wrapper.emitted('page-selected')).toBeTruthy()
+  })
+
+  it('applies a class to the selected dot', () => {
+    expect(wrapper.findAll('[data-testid="carousel-pagination"]').at(0).classes()).toContain('selected')
   })
 })
