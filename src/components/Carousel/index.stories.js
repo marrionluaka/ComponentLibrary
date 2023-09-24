@@ -4,12 +4,22 @@ import Carousel from './index.vue'
 
 export default {
   title: 'Example/Carousel',
-  component: Carousel
+  component: Carousel,
+  argTypes: {
+    next: { action: 'next clicked' },
+    previous: { action: 'previous clicked' },
+    selectPage: { action: 'Page selected!' }
+  }
 }
 
 const Template = args => ({
   template: `
-    <Carousel v-bind="args" />
+    <Carousel
+      v-bind="args"
+      @next="args.next"
+      @previous="args.previous"
+      @page-selected="args.selectPage"
+    />
   `,
 
   components: { Carousel },

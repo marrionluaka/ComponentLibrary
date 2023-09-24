@@ -85,6 +85,9 @@ function selectPage(index: number) {
 
 function next() {
   currentIndex.value = ++currentIndex.value % props.slides.length
+
+  if (props.autoplay) return
+
   emit('next', currentIndex.value)
 }
 
