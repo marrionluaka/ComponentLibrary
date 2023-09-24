@@ -76,9 +76,7 @@ watch(currentIndex, scrollThrough)
 
 onMounted(startAutplay)
 
-onUnmounted(() => {
-  carouselInterval && clearInterval(carouselInterval)
-})
+onUnmounted(stopAutoplay)
 
 function selectPage(index: number) {
   currentIndex.value = index
