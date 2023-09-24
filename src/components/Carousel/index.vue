@@ -17,16 +17,20 @@
       </li>
     </ul>
 
-    <div class="carousel-buttons">
-      <button class="carousel-btn carousel-btn--prev" @click="previous" data-testid="carousel-previous">previous</button>
-      <button class="carousel-btn carousel-btn--next" @click="next" data-testid="carousel-next">next</button>
-    </div>
+    <slot name="buttons" :next="next" :previous="previous">
+      <div class="carousel-buttons">
+        <button class="carousel-btn carousel-btn--prev" @click="previous" data-testid="carousel-previous">previous</button>
+        <button class="carousel-btn carousel-btn--next" @click="next" data-testid="carousel-next">next</button>
+      </div>
+    </slot>
 
-    <ul class="carousel-pagination">
-      <li v-for="(_, index) in slides.length" :key="index">
-        <button :class="{ selected: index === currentIndex }" @click="selectPage(index)" data-testid="carousel-pagination" />
-      </li>
-    </ul>
+    <slot name="pagination" :currentIndex="currentIndex" selectPage="selectPage">
+      <ul class="carousel-pagination">
+        <li v-for="(_, index) in slides.length" :key="index">
+          <button :class="{ selected: index === currentIndex }" @click="selectPage(index)" data-testid="carousel-pagination" />
+        </li>
+      </ul>
+    </slot>
   </article>
 </template>
 
