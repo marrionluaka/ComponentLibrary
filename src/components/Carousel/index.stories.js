@@ -8,7 +8,7 @@ export default {
   argTypes: {
     next: { action: 'next clicked' },
     previous: { action: 'previous clicked' },
-    selectPage: { action: 'Page selected!' }
+    selectPage: { action: 'page selected!' }
   }
 }
 
