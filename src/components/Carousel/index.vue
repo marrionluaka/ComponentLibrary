@@ -1,5 +1,11 @@
 <template>
-  <article class="carousel" :style="`--width: ${props.width}px; --height: ${props.height}px;`" data-testid="carousel">
+  <article
+    class="carousel"
+    :style="`--width: ${props.width}px; --height: ${props.height}px;`"
+    data-testid="carousel"
+    @mouseover="stopAutoplay"
+    @mouseleave="startAutplay"
+  >
     <ul ref="carouselItemsRef" class="carousel-items">
       <li
         v-for="({ src, alt, id }, index) in slides"
@@ -25,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, ref, watch } from 'vue'
+import { PropType, onMounted, onUnmounted, ref, watch } from 'vue'
 
 type Slide = {
   src: string
@@ -45,6 +51,14 @@ const props = defineProps({
   width: {
     type: Number,
     default: 800
+  },
+  autoplay: {
+    type: Boolean,
+    default: false
+  },
+  delay: {
+    type: Number,
+    default: 3000
   }
 })
 
@@ -52,8 +66,17 @@ const emit = defineEmits(['next', 'previous', 'page-selected'])
 
 const carouselItemsRef = ref<HTMLElement | null>(null)
 const currentIndex = ref<number>(0)
+let carouselInterval: NodeJS.Timer | null = null
 
 watch(currentIndex, scrollThrough)
+
+onMounted(() => {
+  startAutplay()
+})
+
+onUnmounted(() => {
+  carouselInterval && clearInterval(carouselInterval)
+})
 
 function selectPage(index: number) {
   currentIndex.value = index
@@ -76,6 +99,16 @@ function previous() {
 
 function scrollThrough() {
   carouselItemsRef.value?.scrollTo({ left: currentIndex.value * props.width, behavior: 'smooth' })
+}
+
+function startAutplay() {
+  if (!props.autoplay) return
+  carouselInterval = setInterval(next, props.delay)
+}
+
+function stopAutoplay() {
+  if (!props.autoplay) return
+  carouselInterval && clearInterval(carouselInterval)
 }
 </script>
 

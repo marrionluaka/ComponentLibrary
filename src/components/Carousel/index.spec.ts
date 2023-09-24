@@ -1,6 +1,7 @@
 import { vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Carousel from './index.vue'
+import { nextTick } from 'vue'
 
 describe('Carousel specs', () => {
   let wrapper: any
@@ -11,6 +12,17 @@ describe('Carousel specs', () => {
     { id: 3, src: 'bird.png', alt: 'bird' }
   ]
   const scrollToMock = vi.fn()
+
+  function mountComponent(props?: any) {
+    wrapper = mount(Carousel, {
+      propsData: {
+        slides,
+        height: 400,
+        width: 600,
+        ...props
+      }
+    })
+  }
 
   beforeAll(() => {
     Object.defineProperty(global.Element.prototype, 'scrollTo', {
@@ -24,12 +36,61 @@ describe('Carousel specs', () => {
   })
 
   beforeEach(async () => {
-    wrapper = mount(Carousel, {
-      propsData: {
-        slides,
-        height: 400,
-        width: 600
-      }
+    vi.useFakeTimers()
+    mountComponent()
+  })
+
+  afterEach(() => vi.clearAllTimers())
+
+  describe('when autoplaying', () => {
+    beforeEach(() => {
+      mountComponent({
+        autoplay: true,
+        delay: 3000,
+        slides: [
+          { id: 1, src: 'cat.png', alt: 'cat' },
+          { id: 2, src: 'dog.png', alt: 'dog' }
+        ]
+      })
+    })
+
+    it('cycles through all given slides', async () => {
+      vi.advanceTimersByTime(3000)
+      await nextTick()
+      expect(wrapper.find('[data-testid="carousel-image-2"]').classes()).toContain('selected')
+
+      vi.advanceTimersByTime(3000)
+      await nextTick()
+      expect(wrapper.find('[data-testid="carousel-image-1"]').classes()).toContain('selected')
+
+      vi.advanceTimersByTime(3000)
+      await nextTick()
+      expect(wrapper.find('[data-testid="carousel-image-2"]').classes()).toContain('selected')
+    })
+
+    it('clears interval on mouseover', async () => {
+      vi.advanceTimersByTime(3000)
+      await nextTick()
+      expect(wrapper.find('[data-testid="carousel-image-2"]').classes()).toContain('selected')
+
+      await wrapper.find('[data-testid="carousel"]').trigger('mouseover')
+
+      vi.advanceTimersByTime(3000)
+      await nextTick()
+      expect(wrapper.find('[data-testid="carousel-image-1"]').classes()).not.toContain('selected')
+    })
+
+    it('resumes interval onmouseleave', async () => {
+      vi.advanceTimersByTime(3000)
+      await nextTick()
+      expect(wrapper.find('[data-testid="carousel-image-2"]').classes()).toContain('selected')
+
+      await wrapper.find('[data-testid="carousel"]').trigger('mouseover')
+      await wrapper.find('[data-testid="carousel"]').trigger('mouseleave')
+
+      vi.advanceTimersByTime(3000)
+      await nextTick()
+      expect(wrapper.find('[data-testid="carousel-image-1"]').classes()).toContain('selected')
     })
   })
 
@@ -105,4 +166,6 @@ describe('Carousel specs', () => {
   it('applies a class to the selected dot', () => {
     expect(wrapper.findAll('[data-testid="carousel-pagination"]').at(0).classes()).toContain('selected')
   })
+
+  it.todo('provides the user the option to autoplay')
 })
