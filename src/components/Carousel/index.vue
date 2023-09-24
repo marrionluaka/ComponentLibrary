@@ -70,9 +70,7 @@ let carouselInterval: NodeJS.Timer | null = null
 
 watch(currentIndex, scrollThrough)
 
-onMounted(() => {
-  startAutplay()
-})
+onMounted(startAutplay)
 
 onUnmounted(() => {
   carouselInterval && clearInterval(carouselInterval)
