@@ -166,6 +166,4 @@ describe('Carousel specs', () => {
   it('applies a class to the selected dot', () => {
     expect(wrapper.findAll('[data-testid="carousel-pagination"]').at(0).classes()).toContain('selected')
   })
-
-  it.todo('provides the user the option to autoplay')
 })
