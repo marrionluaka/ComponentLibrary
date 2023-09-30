@@ -16,8 +16,9 @@
     "@heroicons/vue": "2.0.13",
     "@tailwindcss/forms": "0.5.3",
     "@types/ramda": "0.28.23",
-    "luxon": "3.2.1",
+    "luxon": "^3.2.1",
     "ramda": "0.28.0",
+    "skin-tone": "^3.0.0",
     "storybook": "7.4.0",
     "vue": "^3.2.45"
   },
