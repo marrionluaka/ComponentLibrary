@@ -1,12 +1,14 @@
 <template>
   <article>
-    <Projector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
-    <SkinToneBar v-show="state.shouldDisplaySkinTones" data-testid="skin-tones" @select-tone="selectTone" />
+    <template v-if="state.shouldDisplayEmojis">
+      <Projector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
+      <SkinToneBar v-show="state.shouldDisplaySkinTones" data-testid="skin-tones" @select-tone="selectTone" />
 
-    <div v-show="state.shouldDisplayEmojis" class="flex">
-      <EmojiBar @select-emoji="selectEmoji" :selected-tone="state.selectedTone" />
-      <SkinTonePicker @click="showSkinTones" :selected-tone="state.selectedTone" />
-    </div>
+      <div class="flex">
+        <EmojiBar @select-emoji="selectEmoji" :selected-tone="state.selectedTone" />
+        <SkinTonePicker @click="showSkinTones" :selected-tone="state.selectedTone" />
+      </div>
+    </template>
 
     <EmojiButton @click="showEmojis" />
   </article>
@@ -38,7 +40,7 @@ function selectEmoji(emoji: any) {
 }
 
 function showEmojis() {
-  Object.assign(state, { shouldDisplayEmojis: !state.shouldDisplayEmojis })
+  Object.assign(state, { shouldDisplayEmojis: !state.shouldDisplayEmojis, shouldDisplaySkinTones: false })
 }
 
 function showSkinTones() {

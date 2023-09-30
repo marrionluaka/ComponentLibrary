@@ -1,5 +1,11 @@
 import { mount } from '@vue/test-utils'
+
+import EmojiBar from './EmojiBar.vue'
+import Projector from './Projector.vue'
 import EmojiProjector from './index.vue'
+import EmojiButton from './EmojiButton.vue'
+import SkinToneBar from './SkinToneBar.vue'
+import SkinTonePicker from './SkinTonePicker.vue'
 
 describe('EmojiProjector specs', () => {
   let wrapper: any
@@ -10,17 +16,35 @@ describe('EmojiProjector specs', () => {
     })
   })
 
-  // it('renders a tone picker', () => {
-  //   expect(wrapper.find('[data-testid="tone-picker"]').exists()).toBeTruthy()
-  //   expect(wrapper.find('[data-testid="tone-picker"]').classes()).toContain('none')
-  // })
-  //
-  // it.skip('after clicking the tone picker, it renders a list of different tones', async () => {
-  //   expect(wrapper.find('[data-testid="skin-tones"]').isVisible()).toBeFalsy()
-  //
-  //   await wrapper.find('[data-testid="tone-picker"] button').trigger('click')
-  //   await nextTick()
-  //
-  //   expect(wrapper.find('[data-testid="skin-tones"]').isVisible()).toBeTruthy()
-  // })
+  it('renders an emoji button', () => {
+    expect(wrapper.findComponent(EmojiButton).exists()).toBeTruthy()
+  })
+
+  it('clicking the emoji button should display the emojibar', async () => {
+    expect(wrapper.findComponent(EmojiBar).exists()).toBeFalsy()
+
+    await wrapper.findComponent(EmojiButton).vm.$emit('click')
+
+    expect(wrapper.findComponent(EmojiBar).exists()).toBeTruthy()
+    expect(wrapper.findComponent(SkinTonePicker).exists()).toBeTruthy()
+  })
+
+  it('after selecting an emoji from the emojibar, the selected emoji is rendered', async () => {
+    expect(wrapper.findComponent(Projector).exists()).toBeFalsy()
+
+    await wrapper.findComponent(EmojiButton).vm.$emit('click')
+    await wrapper.findComponent(EmojiBar).vm.$emit('select-emoji', '\u{1F44D}\u{1F3FB}')
+
+    expect(wrapper.findComponent(Projector).exists()).toBeTruthy()
+  })
+
+  it('after clicking the tone picker, it renders a list of different tones', async () => {
+    await wrapper.findComponent(EmojiButton).vm.$emit('click')
+
+    expect(wrapper.findComponent(SkinToneBar).exists()).toBeTruthy()
+    expect(wrapper.findComponent(SkinToneBar).element.style.display).toBe('none')
+
+    await wrapper.findComponent(SkinTonePicker).vm.$emit('click')
+    expect(wrapper.findComponent(SkinToneBar).element.style.display).toBe('')
+  })
 })

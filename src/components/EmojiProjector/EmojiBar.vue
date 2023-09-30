@@ -25,7 +25,8 @@ watch(
   () => props.selectedTone,
   tone => {
     Object.assign(state, { emojis: getNewEmojis(state.emojis, tone) })
-  }
+  },
+  { immediate: true }
 )
 
 function selectEmoji(emoji: string) {
