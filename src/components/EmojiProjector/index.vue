@@ -4,9 +4,9 @@
       <Projector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
       <SkinToneBar v-show="state.shouldDisplaySkinTones" data-testid="skin-tones" @select-tone="selectTone" />
 
-      <div class="flex">
+      <div class="flex items-center">
         <EmojiBar @select-emoji="selectEmoji" :selected-tone="state.selectedTone" />
-        <SkinTonePicker @click="showSkinTones" :selected-tone="state.selectedTone" />
+        <SkinTonePicker class="ml-3" @click="showSkinTones" :selected-tone="state.selectedTone" />
       </div>
     </template>
 
