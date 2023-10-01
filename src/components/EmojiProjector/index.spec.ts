@@ -47,4 +47,12 @@ describe('EmojiProjector specs', () => {
     await wrapper.findComponent(SkinTonePicker).vm.$emit('click')
     expect(wrapper.findComponent(SkinToneBar).element.style.display).toBe('')
   })
+
+  it('after picking a tone, it closes the tones bar', async () => {
+    await wrapper.findComponent(EmojiButton).vm.$emit('click')
+    await wrapper.findComponent(SkinTonePicker).vm.$emit('click')
+    await wrapper.findComponent(SkinToneBar).vm.$emit('select-tone', 'white')
+
+    expect(wrapper.findComponent(SkinToneBar).element.style.display).toBe('none')
+  })
 })

@@ -32,7 +32,7 @@ const state = reactive({
 })
 
 function selectTone(tone: Tone) {
-  Object.assign(state, { selectedTone: tone })
+  Object.assign(state, { selectedTone: tone, shouldDisplaySkinTones: false })
 }
 
 function selectEmoji(emoji: any) {

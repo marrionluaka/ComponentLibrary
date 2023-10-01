@@ -1,12 +1,11 @@
 <template>
   <button @click="onClick" type="button" :class="{ active: state.active }">
-    <FaceSmileIcon />
+    <slot />
   </button>
 </template>
 
 <script lang="ts" setup>
 import { reactive } from 'vue'
-import { FaceSmileIcon } from '@heroicons/vue/24/outline'
 
 const emit = defineEmits(['click'])
 const state = reactive<{ active: boolean }>({ active: false })
@@ -19,7 +18,10 @@ function onClick() {
 
 <style lang="stylus" scoped>
 button
-	@apply w-10 p-2 text-white bg-gray-700 rounded-full
+  @apply flex items-center justify-center w-10 h-10 p-2 bg-transparent rounded-full
+
+  &:hover
+	  @apply bg-gray-500
   &.active
-	@apply bg-blue-600
+	  @apply bg-gray-700
 </style>
