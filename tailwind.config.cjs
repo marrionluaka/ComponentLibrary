@@ -12,6 +12,9 @@ module.exports = {
         spacing: 'margin, padding'
       },
       colors: {
+        metalic: {
+          700: '#3C4043'
+        },
         tone: {
           none: '#FEC724',
           white: '#E2C6A7',

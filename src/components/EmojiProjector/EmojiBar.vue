@@ -12,9 +12,10 @@
 
 <script lang="ts" setup>
 import { reactive, watch, PropType } from 'vue'
+import { emojis, getNewEmojis, Tone } from './core'
+
 import SharedButton from './ShareButton.vue'
 import SharedListContainer from './ShareListContainer.vue'
-import { emojis, getNewEmojis, Tone } from './core'
 
 const props = defineProps({
   selectedTone: {
@@ -40,6 +41,6 @@ function selectEmoji(emoji: string) {
 
 <style lang="stylus" scoped>
 .emoji-bar
-  @apply px-3 rounded-full
+  @apply rounded-full
   background-color rgb(60, 64, 67)
 </style>

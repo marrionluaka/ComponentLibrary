@@ -1,5 +1,5 @@
 <template>
-  <SharedListContainer>
+  <SharedListContainer class="bg-metalic-700 rounded-lg px-2">
     <li v-for="key in skinTones" :key="key">
       <SkinTonePicker @click="selectTone(key)" :selected-tone="key" />
     </li>

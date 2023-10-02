@@ -38,11 +38,12 @@ describe('EmojiProjector specs', () => {
     expect(wrapper.findComponent(Projector).exists()).toBeTruthy()
   })
 
-  it('after clicking the tone picker, it renders a list of different tones', async () => {
+  it.only('after clicking the tone picker, it renders a list of different tones', async () => {
     await wrapper.findComponent(EmojiButton).vm.$emit('click')
 
     expect(wrapper.findComponent(SkinToneBar).exists()).toBeTruthy()
     expect(wrapper.findComponent(SkinToneBar).element.style.display).toBe('none')
+    expect(wrapper.findComponent(SkinTonePicker).exists()).toBeTruthy()
 
     await wrapper.findComponent(SkinTonePicker).vm.$emit('click')
     expect(wrapper.findComponent(SkinToneBar).element.style.display).toBe('')

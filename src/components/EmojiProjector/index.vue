@@ -1,8 +1,8 @@
 <template>
-  <article>
+  <article class="w-fit flex flex-col relative space-y-2">
     <template v-if="state.shouldDisplayEmojis">
       <Projector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
-      <SkinToneBar v-show="state.shouldDisplaySkinTones" data-testid="skin-tones" @select-tone="selectTone" />
+      <SkinToneBar v-show="state.shouldDisplaySkinTones" class="self-end" data-testid="skin-tones" @select-tone="selectTone" />
 
       <div class="flex items-center">
         <EmojiBar @select-emoji="selectEmoji" :selected-tone="state.selectedTone" />
@@ -36,7 +36,7 @@ function selectTone(tone: Tone) {
 }
 
 function selectEmoji(emoji: any) {
-  Object.assign(state, { selectedEmoji: emoji })
+  Object.assign(state, { selectedEmoji: emoji, shouldDisplaySkinTones: false })
 }
 
 function showEmojis() {
