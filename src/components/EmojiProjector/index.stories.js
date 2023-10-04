@@ -1,12 +1,9 @@
 import { reactive } from 'vue'
 import { FaceSmileIcon, VideoCameraIcon, MicrophoneIcon, HandRaisedIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
 
-import EmojiBar from './EmojiBar.vue'
 import Projector from './Projector.vue'
 import EmojiButton from './EmojiButton.vue'
-import SkinToneBar from './SkinToneBar.vue'
-import SkinTonePicker from './SkinTonePicker.vue'
-import SharedButton from './ShareButton.vue'
+import EmojiPicker from './EmojiPicker.vue'
 
 export default {
   title: 'Example/EmojiProjector',
@@ -20,34 +17,30 @@ const Template = args => ({
 
 	  <template v-if="state.shouldDisplayEmojis">
 	    <Projector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
-	    <div class="w-fit flex flex-col relative space-y-2">
-	      <SkinToneBar v-show="state.shouldDisplaySkinTones" class="self-end" data-testid="skin-tones" @select-tone="selectTone" />
-
-	      <div class="flex items-center">
-		<EmojiBar @select-emoji="selectEmoji" :selected-tone="state.selectedTone" />
-		<SkinTonePicker class="ml-3" @click="showSkinTones" :selected-tone="state.selectedTone" />
-	      </div>
-	    </div>
+	    <EmojiPicker
+	      :selected-tone="state.selectedTone"
+	      :should-display-skin-tones="state.shouldDisplaySkinTones"
+	      @select-tone="selectTone"
+	      @select-emoji="selectEmoji"
+	      @show-skin-tones="showSkinTones"
+	    />
 	  </template>
 
-	  <div class="flex self-center space-x-3">
+	  <section class="flex self-center space-x-3">
 	    <EmojiButton @click="void 0" v-for="(icon, index) in state.icons" :key="index">
 	      <component :is="icon" />
 	    </EmojiButton>
 	    <EmojiButton @click="showEmojis" :class="{ 'bg-blue-600': state.active }" >
 	      <FaceSmileIcon />
 	    </EmojiButton>
-	  </div>
+	  </section>
 	</main>
   `,
 
   components: {
-    EmojiBar,
-    Projector,
+    EmojiPicker,
     EmojiButton,
-    SkinToneBar,
-    SkinTonePicker,
-    SharedButton,
+    Projector,
     FaceSmileIcon,
     VideoCameraIcon,
     MicrophoneIcon,
