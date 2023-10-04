@@ -8,12 +8,12 @@
   >
     <ul ref="carouselItemsRef" class="carousel-items">
       <li
-        v-for="({ src, alt, id }, index) in slides"
-        :key="id"
-        :data-testid="`carousel-image-${id}`"
+        v-for="(slide, index) in slides"
+        :key="slide.id"
+        :data-testid="`carousel-image-${slide.id}`"
         :class="['carousel-item', { selected: index === currentIndex }]"
       >
-        <img :src="src" :alt="alt" />
+        <slot v-bind="slide" />
       </li>
     </ul>
 
@@ -38,8 +38,6 @@
 import { PropType, onMounted, onUnmounted, ref, watch } from 'vue'
 
 type Slide = {
-  src: string
-  alt: string
   id: string | number
 }
 

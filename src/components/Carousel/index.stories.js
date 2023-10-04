@@ -19,7 +19,11 @@ const Template = args => ({
       @next="args.next"
       @previous="args.previous"
       @page-selected="args.selectPage"
-    />
+    >
+      <template #default="{ src, alt }">
+        <img :src="src" :alt="alt" />
+      </template>
+    </Carousel>
   `,
 
   components: { Carousel },
