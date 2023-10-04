@@ -1,10 +1,12 @@
 import { reactive } from 'vue'
+import { FaceSmileIcon, VideoCameraIcon, MicrophoneIcon, HandRaisedIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
 
 import EmojiBar from './EmojiBar.vue'
 import Projector from './Projector.vue'
 import EmojiButton from './EmojiButton.vue'
 import SkinToneBar from './SkinToneBar.vue'
 import SkinTonePicker from './SkinTonePicker.vue'
+import SharedButton from './ShareButton.vue'
 
 export default {
   title: 'Example/EmojiProjector',
@@ -13,19 +15,30 @@ export default {
 
 const Template = args => ({
   template: `
-	<article class="w-fit flex flex-col relative space-y-2">
-	  <template v-if="state.shouldDisplayEmojis">
-		<Projector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
-		<SkinToneBar v-show="state.shouldDisplaySkinTones" class="self-end" data-testid="skin-tones" @select-tone="selectTone" />
+	<main class="flex flex-col space-y-3 h-screen justify-center mx-auto max-w-5xl">
+	  <div class="bg-red-400 h-96 rounded-xl"></div>
 
-		<div class="flex items-center">
-		  <EmojiBar @select-emoji="selectEmoji" :selected-tone="state.selectedTone" />
-		  <SkinTonePicker class="ml-3" @click="showSkinTones" :selected-tone="state.selectedTone" />
-		</div>
+	  <template v-if="state.shouldDisplayEmojis">
+	    <Projector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
+	    <div class="w-fit flex flex-col relative space-y-2">
+	      <SkinToneBar v-show="state.shouldDisplaySkinTones" class="self-end" data-testid="skin-tones" @select-tone="selectTone" />
+
+	      <div class="flex items-center">
+		<EmojiBar @select-emoji="selectEmoji" :selected-tone="state.selectedTone" />
+		<SkinTonePicker class="ml-3" @click="showSkinTones" :selected-tone="state.selectedTone" />
+	      </div>
+	    </div>
 	  </template>
 
-	  <EmojiButton @click="showEmojis" />
-	</article>
+	  <div class="flex self-center space-x-3">
+	    <EmojiButton @click="void 0" v-for="(icon, index) in state.icons" :key="index">
+	      <component :is="icon" />
+	    </EmojiButton>
+	    <EmojiButton @click="showEmojis" :class="{ 'bg-blue-600': state.active }" >
+	      <FaceSmileIcon />
+	    </EmojiButton>
+	  </div>
+	</main>
   `,
 
   components: {
@@ -33,7 +46,13 @@ const Template = args => ({
     Projector,
     EmojiButton,
     SkinToneBar,
-    SkinTonePicker
+    SkinTonePicker,
+    SharedButton,
+    FaceSmileIcon,
+    VideoCameraIcon,
+    MicrophoneIcon,
+    HandRaisedIcon,
+    Cog6ToothIcon
   },
 
   setup() {
@@ -41,7 +60,9 @@ const Template = args => ({
       selectedEmoji: null,
       selectedTone: 'none',
       shouldDisplayEmojis: false,
-      shouldDisplaySkinTones: false
+      shouldDisplaySkinTones: false,
+      active: false,
+      icons: [VideoCameraIcon, MicrophoneIcon, HandRaisedIcon, Cog6ToothIcon]
     })
 
     function selectTone(tone) {
@@ -53,7 +74,7 @@ const Template = args => ({
     }
 
     function showEmojis() {
-      Object.assign(state, { shouldDisplayEmojis: !state.shouldDisplayEmojis, shouldDisplaySkinTones: false })
+      Object.assign(state, { shouldDisplayEmojis: !state.shouldDisplayEmojis, shouldDisplaySkinTones: false, active: !state.active })
     }
 
     function showSkinTones() {
