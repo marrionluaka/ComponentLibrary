@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
 import { FaceSmileIcon, VideoCameraIcon, MicrophoneIcon, HandRaisedIcon, Cog6ToothIcon } from '@heroicons/vue/24/outline'
 
-import Projector from './Projector.vue'
+import EmojiProjector from './EmojiProjector.vue'
 import EmojiButton from './EmojiButton.vue'
 import EmojiPicker from './EmojiPicker.vue'
 
@@ -16,7 +16,7 @@ const Template = args => ({
 	  <div class="bg-red-400 h-96 rounded-xl"></div>
 
 	  <template v-if="state.shouldDisplayEmojis">
-	    <Projector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
+	    <EmojiProjector v-if="state.selectedEmoji" :emoji="state.selectedEmoji" />
 	    <EmojiPicker
 	      :selected-tone="state.selectedTone"
 	      :should-display-skin-tones="state.shouldDisplaySkinTones"
@@ -40,7 +40,7 @@ const Template = args => ({
   components: {
     EmojiPicker,
     EmojiButton,
-    Projector,
+    EmojiProjector,
     FaceSmileIcon,
     VideoCameraIcon,
     MicrophoneIcon,
